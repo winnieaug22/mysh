@@ -1,0 +1,29 @@
+#!/bin/bash
+mygit="mygit"
+filelist="$mygit/filelist"
+filelist_nl="$mygit/filelist_nl"
+log="$mygit/log"
+[ -e $filelist ] && rm $filelist
+cat $filelist_nl |sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/ /g' > $filelist
+echo "---modified---"
+echo $filelist_nl
+echo $log
+echo "------"
+echo "git add `cat $filelist`"
+echo ""
+echo "git commit `cat $filelist` -m `cat $log`"
+echo ""
+echo "git lg ; git show"
+echo "git push"
+echo "--sub push--"
+echo "winnie/12345678"
+echo "sub: git push origin master"
+echo "--init--"
+echo "git clone http://140.96.28.94:3000/LEO/leo_zcu111v2021_2.git"
+echo "git submodule update --init --recursive"
+echo "--sub update--"
+echo "sub: git pull origin master"
+echo "top: git submodule update --remote"
+echo "top: git add project-spec"
+echo "top: git commit project-spec -m \"project-spec: submodule update\""
+echo "top: git push"
