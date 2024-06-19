@@ -141,7 +141,7 @@ case $action in
         git clone $remoteUrl
         cd $projName
         git submodule update --init --recursive
-        chxsa
+        chxsa $forChXsa 
         ;;
     "chxsa")
         chxsa $2
