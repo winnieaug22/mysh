@@ -1,4 +1,4 @@
-FPGA_PREFIX=BBDL_SPW_XXV_20240307.bit.bin
+# FPGA_PREFIX=BBDL_SPW_XXV_20240307.bit.bin
 
 echo 0 > /sys/class/fpga_manager/fpga0/flags
 # echo system.bit > /sys/class/fpga_manager/fpga0/firmware

@@ -1,0 +1,3 @@
+ls /usr/bin/my*.sh
+winnie@51-000T300-10:/usr/bin$ sudo rm -rf my*.sh
+winnie@51-000T300-10:/usr/bin$ sudo ln -s ~/mysh/my*.sh .

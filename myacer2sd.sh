@@ -1,0 +1,40 @@
+#!/bin/bash
+media="/media/winnie"
+myboot="$media/MYBOOT"
+myfs="$media/myfs"
+out="/home/winnie/$1"
+#---out dir---
+bootfile="boot.scr BOOT.BIN  image.ub"
+fsfile="rootfs.tar.gz"
+buse="buse"
+blite="blite"
+# bhw="system.bit pl.dtbo"
+#-----------
+bpath="$myfs/lib/firmware"
+hint(){
+    echo myacer2sd.sh out
+}
+if [ "$#" -eq 0 ]; then
+    hint
+    exit
+fi
+echo "$out to sdcard:"
+cd $myboot
+rm -rf *
+cd $myfs
+sudo rm -rf *
+
+cd $out
+cp $bootfile $myboot
+sudo tar zxf $fsfile -C $myfs
+echo "----"
+cd $out
+# sudo cp $bhw $bpath/
+sudo cp -rf $buse/* $bpath/
+sudo cp -rf $blite $bpath/
+cd $bpath
+echo "---$(pwd)---"
+ls -l *
+# cd $bpath/$blite
+# echo "---$(pwd)---"
+# ls -l *
