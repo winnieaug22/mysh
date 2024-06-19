@@ -1,5 +1,5 @@
 #!/bin/bash
-mygit="mygit"
+mygit="/home/winnie/mysh/mygit"
 filelist="$mygit/filelist"
 filelist_nl="$mygit/filelist_nl"
 log="$mygit/log"
