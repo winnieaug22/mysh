@@ -38,8 +38,12 @@ hint(){
             echo Set according to your own petalinux path.
             echo source $toolpath/settings.sh
             echo
-            echo myrun.sh [action: clone / chxsa xsa/ all / config / build / clean / cp ]
-            echo myrun.sh [action: qset / qbuild / qrun ]
+            echo "myrun.sh [ gbitn ]"
+            echo "[ clone -> chxsa xsa -> all , build ]"
+            echo "[ all (include config - build - cp2out - cp2acer ) ]"
+            echo "[ allo (include config - build - cp2out ] for myrunbatch.sh"
+            echo "[ clean ]"
+            echo "[ qall (include qset - qbwic - qrun ) ]"
             echo hostfwd=tcp:127.0.0.1:2222-10.0.2.15:22
             echo
             echo git clone $remoteUrl
@@ -49,7 +53,7 @@ hint(){
             echo
             echo Example:
             echo myrun.sh clone
-            echo myrun.sh run
+            echo myrun.sh all
             echo myrun.sh build
             echo ""
             echo ~/cmdgit/gencmd.sh
@@ -90,9 +94,15 @@ checkerror(){
     cat $buildLog | grep -n "error: "
     echo "##########################"
 }
-cp2out(){
+getbitname(){
     #get bitsteam name
-    bitname=$(cat $plDtsi |grep firmware-name|grep -oP '(?<=firmware-name = ")[^";]+' )
+    local bitname=$(cat $plDtsi |grep firmware-name|grep -oP '(?<=firmware-name = ")[^";]+' )
+    echo "$bitname"
+}
+cp2out(){
+    checkerror
+    #get bitsteam name
+    bitname=$(getbitname)
     mysh="$homedir/mysh"
     fpgaInit="fpgaInitok.sh"
     check_inproj
@@ -114,6 +124,9 @@ cp2out(){
     echo $out
     ls -l $out/
     ls -l $buse/
+
+}
+cp2acer(){
     cd $myProj
     echo "---ssh acer:$acerOutPath---"
     # acerOutPath=tftp/out$(date "+%Y%m%d_%H%M%S")
@@ -129,14 +142,27 @@ cp2out(){
 build(){
     petalinux-build
     petalinux-package --boot --u-boot --format BIN
-    checkerror
-    cp2out
+}
+qset(){
+    petalinux-package --prebuilt --fpga images/linux/system.bit
+    cp ~/myprojects/xilinx-zcu111-2021.2/pre-built/linux/images/pmu_rom_qemu_sha3.elf pre-built/linux/images
+}
+qbwic(){
+    petalinux-package --wic
+    cp images/linux/petalinux-sdimage.wic pre-built/linux/images/
+}
+qrun(){
+    petalinux-boot --qemu --prebuilt 3 --qemu-args "-net nic -net nic -net nic -net nic -net user,hostfwd=tcp:127.0.0.1:2222-10.0.2.15:22"
 }
 if [ "$#" -eq 0 ]; then
     hint "all"
     exit
 fi
 case $action in
+    "gbitn")
+        echo $plDtsi
+        echo "firmware-name = $(getbitname)"
+    ;;
     "clone")
         git clone $remoteUrl
         cd $projName
@@ -161,21 +187,33 @@ case $action in
         ;;
     "build")
         build
+        cp2out
+        cp2acer
         ;;
-    "cp")
-        checkerror
+    "build2out")
+        build
         cp2out
         ;;
+    "cp2out")
+        cp2out
+        ;;
+    "cp2acer")
+        cp2out
+        cp2acer
+        ;;
     "qset")
-        petalinux-package --prebuilt --fpga images/linux/system.bit
-        cp ~/myprojects/xilinx-zcu111-2021.2/pre-built/linux/images/pmu_rom_qemu_sha3.elf pre-built/linux/images
+        qset
         ;&
-    "qbuild")
-        petalinux-package --wic
-        cp images/linux/petalinux-sdimage.wic pre-built/linux/images/
+    "qbwic")
+        qbwic
         ;;
     "qrun")
-        petalinux-boot --qemu --prebuilt 3 --qemu-args "-net nic -net nic -net nic -net nic -net user,hostfwd=tcp:127.0.0.1:2222-10.0.2.15:22"
+        qrun
+        ;;
+    "qall")
+        qset
+        qbwic
+        qrun
         ;;
     *)
         hint "all"
@@ -184,4 +222,5 @@ case $action in
 esac
 #elapsed time
 timeFinish=$(date +%s);
+echo
 echo $((timeFinish-timeStart)) | awk '{print "elapsed time: "int($1/60)" min "int($1%60)" sec"}'

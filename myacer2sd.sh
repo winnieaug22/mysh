@@ -21,11 +21,13 @@ fi
 echo "$out to sdcard:"
 cd $myboot
 rm -rf *
+echo "sudo rm -rf $myfs/*"
 cd $myfs
 sudo rm -rf *
 
 cd $out
 cp $bootfile $myboot
+echo "sudo tar zxf $fsfile -C $myfs"
 sudo tar zxf $fsfile -C $myfs
 echo "----"
 cd $out
