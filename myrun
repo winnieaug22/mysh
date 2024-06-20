@@ -15,9 +15,9 @@ xsaPath="$homedir/data/xsa"
 forChXsa="BBDL_SPW_XXV_20240307.xsa"
 # forChXsa="LCISpace111_Golden_20240611.xsa"
 # forChXsa="LCISpace111_Golden_20240615.xsa"
-otherXsa="BBDL_SPW_XXV_20240307.xsa
-    LCISpace111_Golden_20240611.xsa
-    LCISpace111_Golden_20240615.xsa"
+# otherXsa="BBDL_SPW_XXV_20240307.xsa
+#     LCISpace111_Golden_20240611.xsa
+#     LCISpace111_Golden_20240615.xsa"
 remoteUrl="http://140.96.28.94:3000/LEO/$projName.git"
 
 plDtsi="$myProj/components/plnx_workspace/device-tree/device-tree/pl.dtsi"
@@ -35,30 +35,36 @@ hint(){
             echo no images dir
             ;;
         "all")
-            echo Set according to your own petalinux path.
+            echo "---Set according to your own petalinux path---"
             echo source $toolpath/settings.sh
             echo
-            echo "myrun.sh [ gbitn ]"
-            echo "[ clone -> chxsa xsa -> all , build ]"
-            echo "[ all (include config - build - cp2out - cp2acer ) ]"
-            echo "[ allo (include config - build - cp2out ] for myrunbatch.sh"
-            echo "[ clean ]"
-            echo "[ qall (include qset - qbwic - qrun ) ]"
+            echo "--- myrun ---"
+            echo "[ gbitn                                            ] "
+            echo "[ clone -> chxsa xsa -> all , build                ] "
+            echo "[ all (include config - build - cp2out - cp2acer ) ] "
+            echo "[ allo (include config - build - cp2out            ] for myrunbatch.sh"
+            echo "[ clean                                            ] "
+            echo "[ qall (include qset - qbwic - qrun )              ] "
             echo hostfwd=tcp:127.0.0.1:2222-10.0.2.15:22
             echo
+            echo "---Example---"
             echo git clone $remoteUrl
             echo for change xsa:$xsaPath/$forChXsa
-            echo other xsa:
-            echo $otherXsa
             echo
-            echo Example:
-            echo myrun.sh clone
-            echo myrun.sh all
-            echo myrun.sh build
-            echo ""
-            echo ~/cmdgit/gencmd.sh
-            echo ~/cmdgit/filelist_nl
-            echo ~/cmdgit/log
+            echo myrun clone
+            echo myrun all
+            echo myrun build
+            echo
+            echo "--- mygit ---"
+            mygitpath=$(which mygit)
+            mygitdir=$mygitpath/mygitdir
+            echo vim $mygitdir/filelist_nl
+            echo vim $mygitdir/log
+            echo
+            echo ---$xsaPath---
+            ls -l $xsaPath/
+            echo --------------
+            # echo $otherXsa
             ;;
         *)
             hint "all"
