@@ -145,7 +145,7 @@ cp2out(){
     cp system.bit $buse/
     cp -r ~/share/blite $out
 
-    echo "FPGA_PREFIX=$bitname">$buse/$fpgaInit
+    echo "fpgabit=$bitname">$buse/$fpgaInit
     cat $mysh/fpgaInit.sh >> $buse/$fpgaInit
     echo "---$out---"
     ls -l $out/
