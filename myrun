@@ -80,6 +80,11 @@ hint(){
             echo "# Cross compiler"
             echo "~/tool/petalinux_v2021_2/tools/xsct/gnu/aarch64/lin/aarch64-none/x86_64-oesdk-linux/usr/libexec/aarch64-xilinx-elf/gcc/aarch64-xilinx-elf/10.2.0"
             echo "--------------"
+            echo "petalinux-create -t apps --name mytestspw --enable"
+            echo "petalinux-build -c mytestspw"
+            echo "petalinux-build -c mytestspw -x install"
+            echo "petalinux-build -c mytestspw -x clean"
+
             ;;
         *)
             hint "all"
@@ -143,7 +148,8 @@ cp2out(){
     cp pl.dtbo $buse/
     # cp system.bit $buse/$bitname
     cp system.bit $buse/
-    cp -r ~/share/blite $out
+    #Copy the actual files pointed to by soft links
+    cp -aLR ~/share/blite $out
 
     echo "fpgabit=$bitname">$buse/$fpgaInit
     cat $mysh/fpgaInit.sh >> $buse/$fpgaInit
