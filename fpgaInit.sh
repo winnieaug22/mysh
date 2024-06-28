@@ -1,6 +1,6 @@
-# FPGA_PREFIX=BBDL_SPW_XXV_20240307.bit.bin
-# FPGA_PREFIX=LCISpace111_Golden_20240611.bit.bin
-FPGA_PREFIX=LCISpace111_Golden_20240615.bit.bin
+# fpgabit=BBDL_SPW_XXV_20240307.bit.bin
+# fpgabit=LCISpace111_Golden_20240611.bit.bin
+# fpgabit=LCISpace111_Golden_20240615.bit.bin
 libf=/lib/firmware
 xilinxbase=$libf/xilinx/base
 blite=$libf/blite
@@ -8,20 +8,20 @@ fpgam=/sys/class/fpga_manager
 conf=/configfs/device-tree/overlays/full
 home=/home/root
 testfile=image_test_14M.ub
-gogo=0
+gogo=1
 echo "---cp $xilinxbase/* to $libf/---"
 if [ "$gogo" -eq 1 ]; then
     cp $xilinxbase/* $libf/
 fi
 echo
 
-echo "---$FPGA_PREFIX---"
+echo "---$fpgabit---"
 echo "echo 0 > $fpgam/fpga0/flags"
-echo "echo $FPGA_PREFIX > $fpgam/fpga0/firmware"
+echo "echo $fpgabit > $fpgam/fpga0/firmware"
 if [ "$gogo" -eq 1 ]; then
     echo 0 > $fpgam/fpga0/flags
     # echo system.bit > /sys/class/fpga_manager/fpga0/firmware
-    echo $FPGA_PREFIX > $fpgam/fpga0/firmware
+    echo $fpgabit > $fpgam/fpga0/firmware
 fi
 echo
 
