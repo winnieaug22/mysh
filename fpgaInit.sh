@@ -20,7 +20,7 @@ echo "echo 0 > $fmanager/fpga0/flags"
 echo "echo $fpgabit > $fmanager/fpga0/firmware"
 if [ "$gogo" -eq 1 ]; then
     echo 0 > $fmanager/fpga0/flags
-    # echo system.bit > /sys/class/fpga_manager/fpga0/firmware
+    # cp -f system.bit $fpgabit
     echo $fpgabit > $fmanager/fpga0/firmware
 fi
 echo
