@@ -43,6 +43,7 @@ hint(){
             echo "--- myrun ---"
             echo "[ gbitn                                                            ] "
             echo "[ clone -> chxsa xsa -> allo                                       ] "
+            echo "[ fallo (include allo - qset - qbwic) ]"
             echo "[ all (include clean - config - build - pack - cp2out - cp2acer ) ] "
             echo "[ allo(include clean - config - build - pack - cp2out)            ] for myrunbatch.sh"
             echo "[ ker (include configkernle-buildkernel-cpimage2out)               ] "
@@ -270,6 +271,14 @@ case $action in
         qset
         qbwic
         qrun
+        ;;
+    "fallo")
+        config
+        build
+        pack
+        cp2out
+        qset
+        qbwic
         ;;
     *)
         hint "all"

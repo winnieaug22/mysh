@@ -18,9 +18,22 @@ if [ "$#" -eq 0 ]; then
     hint
     exit
 fi
+if [ ! -d "$(basename $out)" ]; then
+    echo "STOP: $out not exist"
+    exit
+fi
 echo "$out to sdcard:"
+if [ ! -d "$(basename $myboot)" ]; then
+    echo "STOP: $myboot not exist"
+    exit
+fi
 cd $myboot
 rm -rf *
+
+if [ ! -d "$(basename $myfs)" ]; then
+    echo "STOP: $myfs not exist"
+    exit
+fi
 echo "sudo rm -rf $myfs/*"
 cd $myfs
 sudo rm -rf *
