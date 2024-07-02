@@ -1,1 +1,1 @@
-configs/rootfs_config
+project-spec/configs/rootfs_config project-spec/meta-user/conf/user-rootfsconfig project-spec/meta-user/recipes-apps/mytestspw/mytestspw.bb project-spec/meta-user/recipes-apps/mytestspw/files/Makefile project-spec/meta-user/recipes-apps/mytestspw/files/mytestspw.c project-spec/meta-user/recipes-apps/mytestspw/files/packet_transfer.h project-spec/meta-user/recipes-apps/mytestspw/files/packet_transfer.c

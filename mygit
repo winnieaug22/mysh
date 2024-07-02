@@ -2,9 +2,44 @@
 mygit="/home/winnie/mysh/mygitdir"
 filelist="$mygit/filelist"
 filelist_nl="$mygit/filelist_nl"
+mygitdiff="$mygit/mygitdiff"
 log="$mygit/log"
+
+hint(){
+    error=$1
+    case $error in
+        "genvimdiff")
+            echo "$0 diff [modified path] [ori path]"
+            echo "$0 diff /home/winnie/myprojects/0615new/leo_zcu111v2021_2all /home/winnie/myprojects/leo_zcu111v2021_2all"
+            ;;
+        *)
+            exit
+            ;;
+    esac
+
+}
+
 [ -e $filelist ] && rm $filelist
 cat $filelist_nl |sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/ /g' > $filelist
+echo "--vimdiff--"
+if [ "$#" -eq 3 ] && [ "$1" = "diff" ]; then
+    cat $filelist_nl
+    echo "--------------"
+    rm -rf $mygitdiff
+    echo "#!/bin/bash">$mygitdiff
+    while IFS= read -r line
+    do
+        echo "read -p \"vimdiff $2/$line $3/$line\"">>$mygitdiff
+        echo vimdiff "$2/$line" "$3/$line">>$mygitdiff
+        echo vimdiff "$2/$line" "$3/$line"
+    done < "$filelist_nl"
+    echo "--------------"
+    echo "$mygitdiff"
+    chmod +x $mygitdiff
+    exit
+else
+    hint "genvimdiff"
+fi
 echo "---modified---"
 echo $filelist_nl
 echo $log
@@ -15,6 +50,7 @@ echo "git commit `cat $filelist` -m `cat $log`"
 echo ""
 echo "git lg ; git show"
 echo "git push"
+
 echo "--sub push--"
 echo "winnie/12345678"
 echo "sub: git push origin HEAD:master"

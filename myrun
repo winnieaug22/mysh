@@ -3,7 +3,7 @@ timeStart=$(date +%s)
 homedir="/home/winnie"
 toolpath="~/tool/petalinux_v2021_2"
 action=$1
-projName="leo_zcu111v2021_2"
+projName="leo_zcu111v2021_2all"
 myProj=$(pwd)
 # myProj="$homedir/myprojects/$projName"
 out="$myProj/out"
@@ -35,11 +35,6 @@ hint(){
             echo no images dir
             ;;
         "all")
-            echo "---Set according to your own petalinux path---"
-            echo source $toolpath/settings.sh
-            echo "---myProj path---"
-            echo "$myProj"
-            echo
             echo "--- myrun ---"
             echo "[ gbitn                                                            ] "
             echo "[ clone -> chxsa xsa -> allo                                       ] "
@@ -47,7 +42,7 @@ hint(){
             echo "[ all (include clean - config - build - pack - cp2out - cp2acer ) ] "
             echo "[ allo(include clean - config - build - pack - cp2out)            ] for myrunbatch.sh"
             echo "[ ker (include configkernle-buildkernel-cpimage2out)               ] "
-            echo "[ app myappname (include buildapp-installapp-cprootfs2out)         ] "
+            echo "[ genapp myappname (include buildapp-installapp- cpapp2outAblite)   ] "
             echo "[ qall (include qset - qbwic - qrun )                              ] "
             echo hostfwd=tcp:127.0.0.1:2222-10.0.2.15:22
             echo
@@ -81,9 +76,16 @@ hint(){
             echo "~/tool/petalinux_v2021_2/tools/xsct/gnu/aarch64/lin/aarch64-none/x86_64-oesdk-linux/usr/libexec/aarch64-xilinx-elf/gcc/aarch64-xilinx-elf/10.2.0"
             echo "--------------"
             echo "petalinux-create -t apps --name mytestspw --enable"
+            echo "myrun genapp mytestspw"
+            echo "myrun cpapp2outAblite mytestspw"
             echo "petalinux-build -c mytestspw"
             echo "petalinux-build -c mytestspw -x install"
             echo "petalinux-build -c mytestspw -x clean"
+            echo
+            echo "---Set according to your own petalinux path---"
+            echo source $toolpath/settings.sh
+            echo "---myProj path---"
+            echo "$myProj"
 
             ;;
         *)
@@ -104,13 +106,12 @@ chxsa(){
     # echo "cp $xsaPath/$forChXsa itri_system.xsa"
     cp -v $xsaPath/$forChXsa itri_system.xsa
 }
-app(){
+genapp(){
     myapp=$1
     petalinux-config -c $myapp
     petalinux-build -c $myapp
     petalinux-build -c $myapp -x install
-    cp -f $img/rootfs.tar.gz $out
-    ls -l $out/
+    cpapp2outAblite $1
 }
 config(){
     petalinux-config --get-hw-description itri_system.xsa --silentconfig
@@ -130,6 +131,25 @@ getbitname(){
     local bitname=$(cat $plDtsi |grep firmware-name|grep -oP '(?<=firmware-name = ")[^";]+' )
     echo "$bitname"
 }
+cpapp2outAblite(){
+    if [ "$#" -eq 0 ]; then
+        myrun cpapp2outAblite mytestspw
+        exit
+    fi
+    cp -vf $img/rootfs.tar.gz $out
+    binPath=$(find . -name mytestspw|grep "bin/$1")
+    cp -vf $binPath $out/blite/bin/
+    codePath=$myProj/project-spec/meta-user/recipes-apps/$1
+    cp -vrf $codePath $out/blite/code/$1
+    echo "--- $out/rootfs.tar.gz ---"
+    # ls -lRa $out/
+    ls -l $out/
+    echo "--- $out/blite/bin/$1 ---"
+    ls -l $out/blite/bin/
+    echo "--- $out/blite/code/$1 ---"
+    ls -l $out/blite/code/
+}
+
 cp2out(){
     checkerror
     #get bitsteam name
@@ -205,8 +225,8 @@ case $action in
     "clone")
         git clone $remoteUrl
         cd $projName
-        git submodule update --init --recursive
-        chxsa $forChXsa
+        # git submodule update --init --recursive
+        # chxsa $forChXsa
         ;;
     "chxsa")
         chxsa $2
@@ -250,12 +270,15 @@ case $action in
         cp -f $img/image.ub $out
         ls -l $out/
         ;;
-    "app")
+    "genapp")
         if [ "$#" -eq 0 ]; then
             hint "all"
             exit
         fi
-        app $2
+        genapp $2
+        ;;
+    "cpapp2outAblite")
+        cpapp2outAblite $2
         ;;
     "cp2out")
         cp2out
