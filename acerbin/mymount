@@ -1,2 +1,11 @@
 #!/bin/bash
-sudo mount -t nfs 140.96.28.149:/home /mnt/mynfs
+echo "---firewall---"
+echo "sudo iptables -L -v -n"
+echo "---nfs status---"
+echo "sudo systemctl status nfs-kernel-server"
+echo
+echo "---auto: OFF---"
+echo "- /etc/fstab"
+echo "140.96.28.149:/home  /mnt/mynfs nfs  defaults  0  0"
+echo "---manual: ON---"
+echo "sudo mount -t nfs 140.96.28.149:/home /mnt/mynfs"
