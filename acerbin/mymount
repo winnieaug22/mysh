@@ -1,0 +1,2 @@
+#!/bin/bash
+sudo mount -t nfs 140.96.28.149:/home /mnt/mynfs

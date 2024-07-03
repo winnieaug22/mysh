@@ -43,10 +43,11 @@ fi
 echo "---modified---"
 echo $filelist_nl
 echo $log
-echo "------"
+echo "---push---"
 echo "git add `cat $filelist`"
 echo ""
-echo "git commit `cat $filelist` -m `cat $log`"
+echo "git diff --staged"
+echo "git commit `cat $filelist` -m \"`cat $log`\""
 echo ""
 echo "git lg ; git show"
 echo "git push"

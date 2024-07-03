@@ -1,1 +1,14 @@
-"turn on CONFIG_testspw"
+Used for testing the spacewire drivers (spacewire.ko and spacewire_fifo.ko)
+
+turn on CONFIG_mytestspw
+---Usage---
+mytestspw tx [mode] [filename]
+mytestspw rx [mode]
+
+Example:
+mytestspw tx file filename
+mytestspw rx file
+
+mytestspw tx frame filename
+mytestspw rx frame
+mytestspw rx listen

@@ -42,7 +42,7 @@ hint(){
             echo "[ all (include clean - config - build - pack - cp2out - cp2acer ) ] "
             echo "[ allo(include clean - config - build - pack - cp2out)            ] for myrunbatch.sh"
             echo "[ ker (include configkernle-buildkernel-cpimage2out)               ] "
-            echo "[ genapp myappname (include buildapp-installapp- cpapp2outAblite)   ] "
+            echo "[ genapp myappname (include buildapp-installapp- cpapp2out myappname )   ] "
             echo "[ qall (include qset - qbwic - qrun )                              ] "
             echo hostfwd=tcp:127.0.0.1:2222-10.0.2.15:22
             echo
@@ -111,7 +111,7 @@ genapp(){
     petalinux-config -c $myapp
     petalinux-build -c $myapp
     petalinux-build -c $myapp -x install
-    cpapp2outAblite $1
+    cpapp2out $1
 }
 config(){
     petalinux-config --get-hw-description itri_system.xsa --silentconfig
@@ -131,7 +131,7 @@ getbitname(){
     local bitname=$(cat $plDtsi |grep firmware-name|grep -oP '(?<=firmware-name = ")[^";]+' )
     echo "$bitname"
 }
-cpapp2outAblite(){
+cpapp2out(){
     if [ "$#" -eq 0 ]; then
         myrun cpapp2outAblite mytestspw
         exit
@@ -140,6 +140,7 @@ cpapp2outAblite(){
     binPath=$(find . -name mytestspw|grep "bin/$1")
     cp -vf $binPath $out/blite/bin/
     codePath=$myProj/project-spec/meta-user/recipes-apps/$1
+    rm -rf $out/blite/code/$1
     cp -vrf $codePath $out/blite/code/$1
     echo "--- $out/rootfs.tar.gz ---"
     # ls -lRa $out/
