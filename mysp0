@@ -1,0 +1,8 @@
+#!/bin/bash
+echo "sudo ip link add sp0 type dummy"
+echo "sudo ifconfig sp0 up"
+echo "sudo ifconfig sp0 down"
+echo "sudo ip link delete sp0"
+echo
+echo "sudo tcpdump -i sp0 -w capture.pcap"
+echo "tcpdump -r capture.pcap"
