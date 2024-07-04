@@ -192,7 +192,21 @@ cp2acer(){
     ssh -t acer "ls -l $acerOutPath/;exit"
     echo "scp $homedir/mysh/myacer2sd.sh acer:"
     echo "ssh acer"
-    echo "./myacer2sd.sh out"
+    echo "myacer2sd.sh out"
+
+}
+cp2acermnt(){
+    cd $myProj
+    echo "---nfs---"
+    echo "acer's dir of nfs on s149"
+    # echo "mount |grep /mnt/mynfs"
+    # acerOutPath=out
+    # ssh -t acer "rm -rvf $acerOutPath;exit"
+    # scp -r out acer:$acerOutPath
+    # ssh -t acer "ls -l $acerOutPath/;exit"
+    # echo "scp $homedir/mysh/myacer2sd.sh acer:"
+    # echo "ssh acer"
+    # echo "myacer2sd.sh out"
 
 }
 pack(){
