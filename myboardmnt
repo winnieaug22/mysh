@@ -1,0 +1,5 @@
+#!/bin/bash
+echo "sshfs top: toptop"
+echo "sshfs down: downdown"
+echo "fusermount -u ~/toptop"
+echo "fusermount -u ~/downdown"
