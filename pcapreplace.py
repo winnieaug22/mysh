@@ -8,8 +8,8 @@ if len(sys.argv) < 2:
     sys.exit(1)
 
 input_dir = sys.argv[1]  # First command-line argument is the input directory
-# replacement_bytes = bytes.fromhex('09010002000000000031')
-replacement_bytes = bytes.fromhex('')
+replacement_bytes = bytes.fromhex('09010002000000000031')
+#replacement_bytes = bytes.fromhex('')
 
 # Check if the input directory exists
 if not os.path.exists(input_dir):
@@ -27,10 +27,10 @@ for file in files:
         data = f.read()
     
     # Replace the first 10 bytes with the specified replacement bytes
-    if len(data) > 10:
-        data = replacement_bytes + data[10:]
+    if len(data) > 9:
+        data = replacement_bytes + data[9:]
     else:
-        data = replacement_bytes[:len(data)] + data[10:]
+        data = replacement_bytes[:len(data)] + data[9:]
         
     # Write the modified data back to the file
     with open(input_path, 'wb') as f:
