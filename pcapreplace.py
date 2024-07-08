@@ -8,7 +8,7 @@ if len(sys.argv) < 2:
     sys.exit(1)
 
 input_dir = sys.argv[1]  # First command-line argument is the input directory
-replacement_bytes = bytes.fromhex('09010002000000000031')
+replacement_bytes = bytes.fromhex('090100020000000000')
 #replacement_bytes = bytes.fromhex('')
 
 # Check if the input directory exists
