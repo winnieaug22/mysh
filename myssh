@@ -4,4 +4,5 @@ echo
 echo "eval \"\$(ssh-agent -s)\""
 echo "ssh-add ~/.ssh/id_ed25519_s149Tgithub_mysh"
 echo "ssh-add ~/.ssh/id_rsa_acerTgithub_mysh"
+echo "ssh-add ~/.ssh/id_ed25519_vmTgithub_mysh"
 echo "cat ~/.ssh/config"
