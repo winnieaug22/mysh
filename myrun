@@ -65,8 +65,7 @@ hint(){
             echo ---$xsaPath---
             echo "$plDtsi"
             # cat $plDtsi |grep firmware-name
-            cat "$plDtsi" | grep firmware-name | while IFS= read -r line;
-            do
+            cat "$plDtsi" | grep firmware-name | while IFS= read -r line; do
                 echo -e "${YELLOW}${line}${NC}"
             done
             ls -l $xsaPath/
