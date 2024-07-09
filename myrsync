@@ -8,17 +8,16 @@ fi
 
 SRC="$1"
 DST="$2"
-LOGDIR="myrsyncdir"
+LOGDIR=$DST
 LOGFILE="$LOGDIR/rsync.log"
 
 # Create the log directory if it doesn't exist
-mkdir -p "$LOGDIR"
+# mkdir -p "$LOGDIR"
 
 # Record the start of the sync operation
 echo "Starting sync from $SRC to $DST at $(date)" >> "$LOGFILE"
 
 # Print the rsync command being executed
-echo "Executing: rsync -av --delete --log-file=$LOGFILE --log-file-format=\"%t %o %f %l\" $SRC $DST"
 echo "rsync -av --delete --log-file=$LOGFILE --log-file-format=\"%t %o %f %l\" $SRC $DST" >> "$LOGFILE"
 
 # Execute rsync and log detailed output
