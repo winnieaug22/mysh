@@ -21,7 +21,9 @@ echo "Starting sync from $SRC to $DST at $(date)" >> "$LOGFILE"
 echo "rsync -av --delete --log-file=$LOGFILE --log-file-format=\"%t %o %f %l\" $SRC $DST" >> "$LOGFILE"
 
 # Execute rsync and log detailed output
-rsync -av --delete --log-file="$LOGFILE" --log-file-format="%t %o %f %l" "$SRC" "$DST"
+# rsync -av --delete --log-file="$LOGFILE" --log-file-format="%t %o %f %l" "$SRC" "$DST"
+rsync -a --delete --log-file="$LOGFILE" --log-file-format="%t %o %f %l" "$SRC" "$DST"
+echo "cat $LOGFILE"
 
 # Record the completion of the sync operation
 echo "Completed sync from $SRC to $DST at $(date)" >> "$LOGFILE"
