@@ -20,6 +20,8 @@ forChXsa="BBDL_SPW_XXV_20240307.xsa"
 #     LCISpace111_Golden_20240615.xsa"
 remoteUrl="http://140.96.28.94:3000/LEO/$projName.git"
 
+YELLOW='\033[1;33m'
+NC='\033[0m' #reset color
 plDtsi="$myProj/components/plnx_workspace/device-tree/device-tree/pl.dtsi"
 
 check_inproj(){
@@ -62,7 +64,11 @@ hint(){
             echo
             echo ---$xsaPath---
             echo "$plDtsi"
-            cat $plDtsi |grep firmware-name
+            # cat $plDtsi |grep firmware-name
+            cat "$plDtsi" | grep firmware-name | while IFS= read -r line;
+            do
+                echo -e "${YELLOW}${line}${NC}"
+            done
             ls -l $xsaPath/
             echo ---TMPDIR: build/tmp ---
             echo "# petalinux-config -c --kernel"

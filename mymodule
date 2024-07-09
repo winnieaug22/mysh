@@ -1,0 +1,3 @@
+#!/bin/bash
+echo "cat /lib/modules/$(uname -r)/modules.builtin"
+echo "/boot/config-* or /proc/config.gz"
