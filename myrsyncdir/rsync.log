@@ -1,0 +1,6 @@
+Starting sync from /home/winnie/app_testspw/mytestspw0708/files to /home/winnie/share_vm/files at 公曆 20廿四年 七月 九日 週二 十六時51分十五秒
+rsync -av --delete --log-file=myrsyncdir/rsync.log --log-file-format="%t %o %f %l" /home/winnie/app_testspw/mytestspw0708/files /home/winnie/share_vm/files
+2024/07/09 16:51:15 [7728] building file list
+2024/07/09 16:51:15 [7728] rsync: mkdir "/home/winnie/share_vm/files" failed: No such file or directory (2)
+2024/07/09 16:51:15 [7728] rsync error: error in file IO (code 11) at main.c(674) [Receiver=3.1.2]
+Completed sync from /home/winnie/app_testspw/mytestspw0708/files to /home/winnie/share_vm/files at 公曆 20廿四年 七月 九日 週二 十六時51分十五秒
