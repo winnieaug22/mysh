@@ -1,14 +1,15 @@
 Used for testing the spacewire drivers (spacewire.ko and spacewire_fifo.ko)
 
+[Flag]
 turn on CONFIG_mytestspw
----Usage---
-mytestspw tx [mode] [filename]
-mytestspw rx [mode]
 
-Example:
-mytestspw tx file filename
-mytestspw rx file
+[Usage]
+mytestspw tx rawpkg [filename]
+mytestspw tx sample 1
 
-mytestspw tx frame filename
-mytestspw rx frame
-mytestspw rx listen
+mytestspw rx
+tcpdump -i sp0 -w log.pcap
+
+[Modification of the sample packet]
+pkgs.h: Packet content
+packet_transfer.c: The sent_sample_package function describes how to transfer

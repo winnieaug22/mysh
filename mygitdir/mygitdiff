@@ -1,15 +1,11 @@
 #!/bin/bash
-read -p "vimdiff /home/winnie/myprojects/0615new/leo_zcu111v2021_2all/project-spec/configs/rootfs_config /home/winnie/myprojects/leo_zcu111v2021_2all/project-spec/configs/rootfs_config"
-vimdiff /home/winnie/myprojects/0615new/leo_zcu111v2021_2all/project-spec/configs/rootfs_config /home/winnie/myprojects/leo_zcu111v2021_2all/project-spec/configs/rootfs_config
-read -p "vimdiff /home/winnie/myprojects/0615new/leo_zcu111v2021_2all/project-spec/meta-user/conf/user-rootfsconfig /home/winnie/myprojects/leo_zcu111v2021_2all/project-spec/meta-user/conf/user-rootfsconfig"
-vimdiff /home/winnie/myprojects/0615new/leo_zcu111v2021_2all/project-spec/meta-user/conf/user-rootfsconfig /home/winnie/myprojects/leo_zcu111v2021_2all/project-spec/meta-user/conf/user-rootfsconfig
-read -p "vimdiff /home/winnie/myprojects/0615new/leo_zcu111v2021_2all/project-spec/meta-user/recipes-apps/mytestspw/mytestspw.bb /home/winnie/myprojects/leo_zcu111v2021_2all/project-spec/meta-user/recipes-apps/mytestspw/mytestspw.bb"
-vimdiff /home/winnie/myprojects/0615new/leo_zcu111v2021_2all/project-spec/meta-user/recipes-apps/mytestspw/mytestspw.bb /home/winnie/myprojects/leo_zcu111v2021_2all/project-spec/meta-user/recipes-apps/mytestspw/mytestspw.bb
-read -p "vimdiff /home/winnie/myprojects/0615new/leo_zcu111v2021_2all/project-spec/meta-user/recipes-apps/mytestspw/files/Makefile /home/winnie/myprojects/leo_zcu111v2021_2all/project-spec/meta-user/recipes-apps/mytestspw/files/Makefile"
-vimdiff /home/winnie/myprojects/0615new/leo_zcu111v2021_2all/project-spec/meta-user/recipes-apps/mytestspw/files/Makefile /home/winnie/myprojects/leo_zcu111v2021_2all/project-spec/meta-user/recipes-apps/mytestspw/files/Makefile
-read -p "vimdiff /home/winnie/myprojects/0615new/leo_zcu111v2021_2all/project-spec/meta-user/recipes-apps/mytestspw/files/mytestspw.c /home/winnie/myprojects/leo_zcu111v2021_2all/project-spec/meta-user/recipes-apps/mytestspw/files/mytestspw.c"
-vimdiff /home/winnie/myprojects/0615new/leo_zcu111v2021_2all/project-spec/meta-user/recipes-apps/mytestspw/files/mytestspw.c /home/winnie/myprojects/leo_zcu111v2021_2all/project-spec/meta-user/recipes-apps/mytestspw/files/mytestspw.c
-read -p "vimdiff /home/winnie/myprojects/0615new/leo_zcu111v2021_2all/project-spec/meta-user/recipes-apps/mytestspw/files/packet_transfer.h /home/winnie/myprojects/leo_zcu111v2021_2all/project-spec/meta-user/recipes-apps/mytestspw/files/packet_transfer.h"
-vimdiff /home/winnie/myprojects/0615new/leo_zcu111v2021_2all/project-spec/meta-user/recipes-apps/mytestspw/files/packet_transfer.h /home/winnie/myprojects/leo_zcu111v2021_2all/project-spec/meta-user/recipes-apps/mytestspw/files/packet_transfer.h
-read -p "vimdiff /home/winnie/myprojects/0615new/leo_zcu111v2021_2all/project-spec/meta-user/recipes-apps/mytestspw/files/packet_transfer.c /home/winnie/myprojects/leo_zcu111v2021_2all/project-spec/meta-user/recipes-apps/mytestspw/files/packet_transfer.c"
-vimdiff /home/winnie/myprojects/0615new/leo_zcu111v2021_2all/project-spec/meta-user/recipes-apps/mytestspw/files/packet_transfer.c /home/winnie/myprojects/leo_zcu111v2021_2all/project-spec/meta-user/recipes-apps/mytestspw/files/packet_transfer.c
+read -p "vimdiff leo/project-spec/meta-user/recipes-apps/mytestspw/files/Makefile leo_zcu111v2021_2all/project-spec/meta-user/recipes-apps/mytestspw/files/Makefile"
+vimdiff leo/project-spec/meta-user/recipes-apps/mytestspw/files/Makefile leo_zcu111v2021_2all/project-spec/meta-user/recipes-apps/mytestspw/files/Makefile
+read -p "vimdiff leo/project-spec/meta-user/recipes-apps/mytestspw/files/mytestspw.c leo_zcu111v2021_2all/project-spec/meta-user/recipes-apps/mytestspw/files/mytestspw.c"
+vimdiff leo/project-spec/meta-user/recipes-apps/mytestspw/files/mytestspw.c leo_zcu111v2021_2all/project-spec/meta-user/recipes-apps/mytestspw/files/mytestspw.c
+read -p "vimdiff leo/project-spec/meta-user/recipes-apps/mytestspw/files/packet_transfer.c leo_zcu111v2021_2all/project-spec/meta-user/recipes-apps/mytestspw/files/packet_transfer.c"
+vimdiff leo/project-spec/meta-user/recipes-apps/mytestspw/files/packet_transfer.c leo_zcu111v2021_2all/project-spec/meta-user/recipes-apps/mytestspw/files/packet_transfer.c
+read -p "vimdiff leo/project-spec/meta-user/recipes-apps/mytestspw/files/packet_transfer.h leo_zcu111v2021_2all/project-spec/meta-user/recipes-apps/mytestspw/files/packet_transfer.h"
+vimdiff leo/project-spec/meta-user/recipes-apps/mytestspw/files/packet_transfer.h leo_zcu111v2021_2all/project-spec/meta-user/recipes-apps/mytestspw/files/packet_transfer.h
+read -p "vimdiff leo/project-spec/meta-user/recipes-apps/mytestspw/files/pkgs.h leo_zcu111v2021_2all/project-spec/meta-user/recipes-apps/mytestspw/files/pkgs.h"
+vimdiff leo/project-spec/meta-user/recipes-apps/mytestspw/files/pkgs.h leo_zcu111v2021_2all/project-spec/meta-user/recipes-apps/mytestspw/files/pkgs.h
