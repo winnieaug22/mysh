@@ -52,12 +52,11 @@ hint(){
             # echo git clone --branch develop $remoteUrl
             # echo for change xsa:$xsaPath/$forChXsa
             echo myrun clone
-            echo myrun chxsa $forChXsa
+            # echo myrun chxsa $forChXsa
+			echo leo_settings/setup.as.space.sh 
+            echo ? myrun fallo
             echo myrun allo
-            echo
-            echo myrun fallo
-            echo myrun allo
-            echo myrun genapp mytestspw
+            echo ? myrun genapp mytestspw
             # echo "--- mygit ---"
             # mygitpath=$(which mygit)
             # mygitdir=$mygitpath/mygitdir
@@ -70,11 +69,11 @@ hint(){
             cat "$plDtsi" | grep firmware-name | while IFS= read -r line; do
                 echo -e "${YELLOW}${line}${NC}"
             done
-            ls -l $xsaPath/
+            # ls -l $xsaPath/
             echo -e "${YELLOW}---TMPDIR: build/tmp ---${NC}"
-            echo "# petalinux-config -c --kernel"
+            echo "# petalinux-config -c kernel"
             echo "build/tmp/work/zynqmp_generic-xilinx-linux/linux-xlnx/5.10+git999-r0/linux-xlnx-5.10+git999/.config"
-            echo "# petalinux-config -c --rootfs"
+            echo "# petalinux-config -c rootfs"
             # echo "project-spec/meta-user/conf/user-rootfsconfig"
             echo "project-spec/configs/rootfs_config"
             echo "build/tmp/work/zynqmp_generic-xilinx-linux/petalinux-image-minimal/1.0-r0/rootfs/"
