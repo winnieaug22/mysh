@@ -47,9 +47,7 @@ hint(){
             echo "[ genapp myappname (include buildapp-installapp- cpapp2out myappname )   ] "
             echo "[ qall (include qset - qbwic - qrun )                              ] "
             # echo hostfwd=tcp:127.0.0.1:2222-10.0.2.15:22
-            echo
             echo "---Example---"
-            # echo git clone --branch develop $remoteUrl
             # echo for change xsa:$xsaPath/$forChXsa
             echo myrun clone
             # echo myrun chxsa $forChXsa
@@ -63,6 +61,15 @@ hint(){
             # echo vim $mygitdir/filelist_nl
             # echo vim $mygitdir/log
             # echo
+			echo -e "${YELLOW}---pure---${NC}"
+            echo git clone --branch develop $remoteUrl
+			echo leo_settings/setup.as.space.sh
+			echo petalinux-config -c kernel
+			echo petalinux-config -c rootfs
+			echo petalinux-package --force --boot --fsbl --fpga no --u-boot
+			echo petalunux-build
+			echo myrun cp2out
+			echo myrun cp2acer
             echo ---$xsaPath---
             echo "$plDtsi"
             # cat $plDtsi |grep firmware-name
