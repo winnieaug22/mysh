@@ -46,22 +46,24 @@ hint(){
             echo "[ ker (include configkernle-buildkernel-cpimage2out)               ] "
             echo "[ genapp myappname (include buildapp-installapp- cpapp2out myappname )   ] "
             echo "[ qall (include qset - qbwic - qrun )                              ] "
-            echo hostfwd=tcp:127.0.0.1:2222-10.0.2.15:22
+            # echo hostfwd=tcp:127.0.0.1:2222-10.0.2.15:22
             echo
             echo "---Example---"
-            echo git clone $remoteUrl
-            echo for change xsa:$xsaPath/$forChXsa
-            echo
+            # echo git clone --branch develop $remoteUrl
+            # echo for change xsa:$xsaPath/$forChXsa
             echo myrun clone
-            echo myrun chxsa
+            echo myrun chxsa $forChXsa
             echo myrun allo
             echo
-            echo "--- mygit ---"
-            mygitpath=$(which mygit)
-            mygitdir=$mygitpath/mygitdir
-            echo vim $mygitdir/filelist_nl
-            echo vim $mygitdir/log
-            echo
+            echo myrun fallo
+            echo myrun allo
+            echo myrun genapp mytestspw
+            # echo "--- mygit ---"
+            # mygitpath=$(which mygit)
+            # mygitdir=$mygitpath/mygitdir
+            # echo vim $mygitdir/filelist_nl
+            # echo vim $mygitdir/log
+            # echo
             echo ---$xsaPath---
             echo "$plDtsi"
             # cat $plDtsi |grep firmware-name
@@ -69,24 +71,24 @@ hint(){
                 echo -e "${YELLOW}${line}${NC}"
             done
             ls -l $xsaPath/
-            echo ---TMPDIR: build/tmp ---
-            echo "# petalinux-config -c --kernel"
-            echo "build/tmp/work/zynqmp_generic-xilinx-linux/linux-xlnx/5.10+git999-r0/linux-xlnx-5.10+git999/.config"
-            echo "# petalinux-config -c --rootfs"
-            echo "project-spec/meta-user/conf/user-rootfsconfig"
-            echo "build/tmp/work/zynqmp_generic-xilinx-linux/petalinux-image-minimal/1.0-r0/rootfs/"
-            echo "# Apps/libs"
-            echo "TMPDIR/zynqmp_generic-xilinx-linux"
-            echo "# Cross compiler"
-            echo "~/tool/petalinux_v2021_2/tools/xsct/gnu/aarch64/lin/aarch64-none/x86_64-oesdk-linux/usr/libexec/aarch64-xilinx-elf/gcc/aarch64-xilinx-elf/10.2.0"
-            echo "--------------"
-            echo "petalinux-create -t apps --name mytestspw --enable"
-            echo "myrun genapp mytestspw"
-            echo "myrun cpapp2outAblite mytestspw"
-            echo "petalinux-build -c mytestspw"
-            echo "petalinux-build -c mytestspw -x install"
-            echo "petalinux-build -c mytestspw -x clean"
-            echo
+            # echo ---TMPDIR: build/tmp ---
+            # echo "# petalinux-config -c --kernel"
+            # echo "build/tmp/work/zynqmp_generic-xilinx-linux/linux-xlnx/5.10+git999-r0/linux-xlnx-5.10+git999/.config"
+            # echo "# petalinux-config -c --rootfs"
+            # echo "project-spec/meta-user/conf/user-rootfsconfig"
+            # echo "build/tmp/work/zynqmp_generic-xilinx-linux/petalinux-image-minimal/1.0-r0/rootfs/"
+            # echo "# Apps/libs"
+            # echo "TMPDIR/zynqmp_generic-xilinx-linux"
+            # echo "# Cross compiler"
+            # echo "~/tool/petalinux_v2021_2/tools/xsct/gnu/aarch64/lin/aarch64-none/x86_64-oesdk-linux/usr/libexec/aarch64-xilinx-elf/gcc/aarch64-xilinx-elf/10.2.0"
+            # echo "--------------"
+            # echo "petalinux-create -t apps --name mytestspw --enable"
+            # echo "myrun genapp mytestspw"
+            # echo "myrun cpapp2outAblite mytestspw"
+            # echo "petalinux-build -c mytestspw"
+            # echo "petalinux-build -c mytestspw -x install"
+            # echo "petalinux-build -c mytestspw -x clean"
+            # echo
             echo "---Set according to your own petalinux path---"
             echo source $toolpath/settings.sh
             echo "---myProj path---"
@@ -243,7 +245,8 @@ case $action in
         echo "firmware-name = $(getbitname)"
     ;;
     "clone")
-        git clone $remoteUrl
+        # git clone $remoteUrl
+        git clone --branch develop $remoteUrl
         cd $projName
         # git submodule update --init --recursive
         # chxsa $forChXsa
