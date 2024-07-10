@@ -71,16 +71,16 @@ hint(){
                 echo -e "${YELLOW}${line}${NC}"
             done
             ls -l $xsaPath/
-            # echo ---TMPDIR: build/tmp ---
-            # echo "# petalinux-config -c --kernel"
-            # echo "build/tmp/work/zynqmp_generic-xilinx-linux/linux-xlnx/5.10+git999-r0/linux-xlnx-5.10+git999/.config"
-            # echo "# petalinux-config -c --rootfs"
-            # echo "project-spec/meta-user/conf/user-rootfsconfig"
-            # echo "build/tmp/work/zynqmp_generic-xilinx-linux/petalinux-image-minimal/1.0-r0/rootfs/"
+            echo -e "${YELLOW}---TMPDIR: build/tmp ---${NC}"
+            echo "# petalinux-config -c --kernel"
+            echo "build/tmp/work/zynqmp_generic-xilinx-linux/linux-xlnx/5.10+git999-r0/linux-xlnx-5.10+git999/.config"
+            echo "# petalinux-config -c --rootfs"
+            echo "project-spec/meta-user/conf/user-rootfsconfig"
+            echo "build/tmp/work/zynqmp_generic-xilinx-linux/petalinux-image-minimal/1.0-r0/rootfs/"
             # echo "# Apps/libs"
             # echo "TMPDIR/zynqmp_generic-xilinx-linux"
-            # echo "# Cross compiler"
-            # echo "~/tool/petalinux_v2021_2/tools/xsct/gnu/aarch64/lin/aarch64-none/x86_64-oesdk-linux/usr/libexec/aarch64-xilinx-elf/gcc/aarch64-xilinx-elf/10.2.0"
+            echo "# Cross compiler"
+            echo "~/tool/petalinux_v2021_2/tools/xsct/gnu/aarch64/lin/aarch64-none/x86_64-oesdk-linux/usr/libexec/aarch64-xilinx-elf/gcc/aarch64-xilinx-elf/10.2.0"
             # echo "--------------"
             # echo "petalinux-create -t apps --name mytestspw --enable"
             # echo "myrun genapp mytestspw"
@@ -89,7 +89,7 @@ hint(){
             # echo "petalinux-build -c mytestspw -x install"
             # echo "petalinux-build -c mytestspw -x clean"
             # echo
-            echo "---Set according to your own petalinux path---"
+            echo -e "${YELLOW}---Set according to your own petalinux path---${NC}"
             echo source $toolpath/settings.sh
             echo "---myProj path---"
             echo "$myProj"
