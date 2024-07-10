@@ -69,4 +69,5 @@ echo "---"
 echo "git lg|grep -i spacewire"
 echo "git log --follow -- components/ext_sources/kernel-source/drivers/net/spacewire.c"
 echo "git log -p --follow -- components/ext_sources/kernel-source/drivers/net/spacewire.c"
-
+echo "---git clone---"
+echo "git clone --branch develop http://140.96.28.94:3000/LEO/leo_zcu111v2021_2all.git"
