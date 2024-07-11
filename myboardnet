@@ -1,13 +1,23 @@
 #!/bin/bash
 
 # Define the file path to modify
-FILE="/etc/network/interfaces"
-# FILE="interfaces"
+# FILE="/etc/network/interfaces"
+FILE="myboardnetdir/interfaces"
+sysintf="/etc/network/interfaces"
 
 # Check if parameter is provided
 if [ -z "$1" ]; then
     echo "Usage: $0 <address|dhcp>"
     echo "Example addresses: 140.96.28.6, 140.96.28.7, 192.168.0.6, 192.168.0.7, dhcp"
+    echo "-------"
+    echo "myboardnet 140.96.28.6"
+    echo "cat $FILE"
+    echo "mv $sysintf ${sysintf}_ori"
+    echo "cp $FILE $sysintf"
+    echo "/etc/init.d/networking restart"
+    echo "cat myboardnetdir/id_rsa_acerTboard.pub > ~/.ssh/authorized_keys"
+    echo "cat myboardnetdir/id_ed25519_vmTboard.pub >> ~/.ssh/authorized_keys"
+    echo "-------"
     exit 1
 fi
 # Check if eth0 configuration exists
@@ -53,4 +63,3 @@ else
         echo "Address configuration set to: $1"
     fi
 fi
-echo "/etc/init.d/networking restart"
