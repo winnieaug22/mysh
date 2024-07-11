@@ -173,9 +173,9 @@ export LIBGL_ALWAYS_INDIRECT=1
 ###############################################################################
 # winnie setting
 ###############################################################################
-export PATH=$HOME/.rcfile/.bin/git-diffall:$PATH
-export PATH=$HOME/.rcfile/.bin/:$PATH
-#:scscope find c
-#:scscope find t
-#:Grep
-export PATH=$HOME/android-ndk-r10:$PATH
+#export PATH=$HOME/.rcfile/.bin/git-diffall:$PATH
+#export PATH=$HOME/.rcfile/.bin/:$PATH
+##:scscope find c
+##:scscope find t
+##:Grep
+#export PATH=$HOME/android-ndk-r10:$PATH

@@ -64,6 +64,7 @@ hint(){
 			echo -e "${YELLOW}---pure---${NC}"
             echo git clone --branch develop $remoteUrl
 			echo leo_settings/setup.as.space.sh
+			echo petalinux-config --get-hw-description itri_system.xsa --silentconfig
 			echo petalinux-config -c kernel
 			echo petalinux-config -c rootfs
 			echo petalinux-package --force --boot --fsbl --fpga no --u-boot
@@ -242,6 +243,9 @@ qbwic(){
 qrun(){
     petalinux-boot --qemu --prebuilt 3 --qemu-args "-net nic -net nic -net nic -net nic -net user,hostfwd=tcp:127.0.0.1:2222-10.0.2.15:22"
 }
+setupTspace(){
+		leo_settings/setup.as.space.sh
+}
 if [ "$#" -eq 0 ]; then
     hint "all"
     exit
@@ -262,6 +266,7 @@ case $action in
         chxsa $2
         ;;
     "all")
+		setupTspace
         config
         build
         pack
@@ -269,6 +274,7 @@ case $action in
         cp2acer
         ;;
     "allo")
+		setupTspace
         config
         build
         pack
