@@ -6,6 +6,8 @@ out="/home/winnie/$1"
 #---out dir---
 bootfile="boot.scr BOOT.BIN  image.ub"
 fsfile="rootfs.tar.gz"
+# buse/*    --> /lib/firmware in SD card
+# blite dir --> /lib/firmware in SD card
 buse="buse"
 blite="blite"
 # bhw="system.bit pl.dtbo"

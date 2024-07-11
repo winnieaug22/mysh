@@ -103,6 +103,7 @@ hint(){
             echo -e "$yellow---TMPDIR: build/tmp ---$end"
             echo "# petalinux-config -c kernel"
             echo "build/tmp/work/zynqmp_generic-xilinx-linux/linux-xlnx/5.10+git999-r0/linux-xlnx-5.10+git999/.config"
+            echo "project-spec/meta-user/recipes-kernel/linux/linux-xlnx/user_v100_2023-12-11-00.cfg"
             echo "# petalinux-config -c rootfs"
             # echo "project-spec/meta-user/conf/user-rootfsconfig"
             echo "project-spec/configs/rootfs_config"
@@ -192,6 +193,7 @@ cp2out(){
     checkerror
     #get bitsteam name
     bitname=$(getbitname)
+    dtboname="${bitname%.bit.bin}.dtbo"
     mysh="$homedir/mysh"
     fpgaInit="fpgaInitok.sh"
     check_inproj
@@ -203,14 +205,15 @@ cp2out(){
 
     cd $img
     cp BOOT.BIN image.ub rootfs.tar.gz boot.scr $out
-    cp pl.dtbo $buse/
-    # cp system.bit $buse/$bitname
-    cp system.bit $buse/
+    # cp pl.dtbo $buse/
+    cp pl.dtbo $buse/$dtboname
+    cp system.bit $buse/$bitname
+    # cp system.bit $buse/
     #Copy the actual files pointed to by soft links
     cp -aLR ~/share/blite $out
 
-    echo "fpgabit=$bitname">$buse/$fpgaInit
-    cat $mysh/fpgaInit.sh >> $buse/$fpgaInit
+    # echo "fpgabit=$bitname">$buse/$fpgaInit
+    # cat $mysh/fpgaInit.sh >> $buse/$fpgaInit
     echo "---$out---"
     ls -l $out/
     echo "---$out/blite---"
