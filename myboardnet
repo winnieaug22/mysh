@@ -16,6 +16,7 @@ if [ -z "$1" ]; then
     echo "mv $sysintf ${sysintf}_ori"
     echo "cp $FILE $sysintf"
     echo "/etc/init.d/networking restart"
+    echo "ifconfig eth0 up"
     echo "-------"
     echo "chmod 777 myboardnetdir/myboardssh"
     echo "./myboardnetdir/myboardssh"
