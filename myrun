@@ -22,7 +22,26 @@ remoteUrl="http://140.96.28.94:3000/LEO/$projName.git"
 
 YELLOW='\033[1;33m'
 NC='\033[0m' #reset color
+
+end="\e[0m"
+black="\e[1;30m"
+red="\e[1;31m"
+green="\e[1;32m"
+yellow="\e[1;33m"
+blue="\e[1;34m"
+magenta="\e[1;35m"
+cyan="\e[1;36m"
+white="\e[1;37m"
+darkblack="\e[30m"
+darkred="\e[31m"
+darkgreen="\e[32m"
+darkyellow="\e[33m"
+darkblue="\e[34m"
+darkmagenta="\e[35m"
+darkcyan="\e[36m"
+darkwhite="\e[37m"
 plDtsi="$myProj/components/plnx_workspace/device-tree/device-tree/pl.dtsi"
+bootspt="$myProj/project-spec/meta-user/recipes-apps/bootscript/files/bootscript"
 
 check_inproj(){
     if [ ! -d "images" ]; then
@@ -41,8 +60,8 @@ hint(){
             echo "[ gbitn                                                            ] "
             echo "[ clone -> chxsa xsa -> allo                                       ] "
             echo "[ fallo (include allo - qset - qbwic) ]"
-            echo "[ all (include clean - config - build - pack - cp2out - cp2acer ) ] "
-            echo "[ allo(include clean - config - build - pack - cp2out)            ] for myrunbatch.sh"
+            echo "[ all (include setupTspace - config - build - pack - cp2out - cp2acer ) ] "
+            echo "[ allo(include setupTspace - config - build - pack - cp2out)            ] for myrunbatch.sh"
             echo "[ ker (include configkernle-buildkernel-cpimage2out)               ] "
             echo "[ genapp myappname (include buildapp-installapp- cpapp2out myappname )   ] "
             echo "[ qall (include qset - qbwic - qrun )                              ] "
@@ -51,17 +70,16 @@ hint(){
             # echo for change xsa:$xsaPath/$forChXsa
             echo myrun clone
             # echo myrun chxsa $forChXsa
-			echo leo_settings/setup.as.space.sh 
-            echo ? myrun fallo
+            echo !! myrun fallo
             echo myrun allo
-            echo ? myrun genapp mytestspw
+            echo !! myrun genapp mytestspw
             # echo "--- mygit ---"
             # mygitpath=$(which mygit)
             # mygitdir=$mygitpath/mygitdir
             # echo vim $mygitdir/filelist_nl
             # echo vim $mygitdir/log
             # echo
-			echo -e "${YELLOW}---pure---${NC}"
+			echo -e "$yellow---pure---$end"
             echo git clone --branch develop $remoteUrl
 			echo leo_settings/setup.as.space.sh
 			echo petalinux-config --get-hw-description itri_system.xsa --silentconfig
@@ -75,10 +93,14 @@ hint(){
             echo "$plDtsi"
             # cat $plDtsi |grep firmware-name
             cat "$plDtsi" | grep firmware-name | while IFS= read -r line; do
-                echo -e "${YELLOW}${line}${NC}"
+                echo -e "$magenta${line}$end"
+            done
+            echo "$bootspt"
+            cat "$bootspt" | grep FPGA_PREFIX | while IFS= read -r line; do
+                echo -e "$cyan${line}$end"
             done
             # ls -l $xsaPath/
-            echo -e "${YELLOW}---TMPDIR: build/tmp ---${NC}"
+            echo -e "$yellow---TMPDIR: build/tmp ---$end"
             echo "# petalinux-config -c kernel"
             echo "build/tmp/work/zynqmp_generic-xilinx-linux/linux-xlnx/5.10+git999-r0/linux-xlnx-5.10+git999/.config"
             echo "# petalinux-config -c rootfs"
@@ -97,7 +119,7 @@ hint(){
             # echo "petalinux-build -c mytestspw -x install"
             # echo "petalinux-build -c mytestspw -x clean"
             # echo
-            echo -e "${YELLOW}---Set according to your own petalinux path---${NC}"
+            echo -e "$yellow---Set according to your own petalinux path---$end"
             echo source $toolpath/settings.sh
             echo "---myProj path---"
             echo "$myProj"
