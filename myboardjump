@@ -1,0 +1,13 @@
+#!/bin/bash
+echo iclITRI2022
+echo Jump host
+echo ssh admin@10.88.212.36 -p 9487
+echo DSP1\(FT\)
+echo ssh v100@192.168.10.31
+echo DSP2\(UT\)
+echo ssh v100@192.168.10.32
+echo DSP3\(FT\)
+echo ssh v100@192.168.10.33
+echo DSP4\(UT\)
+echo ssh v100@192.168.10.34
+
