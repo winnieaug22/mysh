@@ -12,7 +12,8 @@ buse="buse"
 blite="blite"
 # bhw="system.bit pl.dtbo"
 #-----------
-bpath="$myfs/lib/firmware"
+bfirmdir="$myfs/lib/firmware"
+brootdir="$myfs/home/root"
 hint(){
     echo myacer2sd.sh out
 }
@@ -46,12 +47,12 @@ echo "sudo tar zxf $fsfile -C $myfs"
 sudo tar zxf $fsfile -C $myfs
 echo "----"
 cd $out
-# sudo cp $bhw $bpath/
-sudo cp -rf $buse/* $bpath/
-sudo cp -rf $blite $bpath/
-cd $bpath
+# sudo cp $bhw to board
+sudo cp -rf $buse/* $bfirmdir/
+sudo cp -rf $blite $brootdir/
+cd $bfirmdir
 echo "---$(pwd)---"
 ls -l *
-# cd $bpath/$blite
-# echo "---$(pwd)---"
-# ls -l *
+cd $brootdir
+echo "---$(pwd)---"
+ls -l *
