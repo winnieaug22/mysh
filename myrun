@@ -7,7 +7,7 @@ projName="leo_zcu111v2021_2all"
 myProj=$(pwd)
 # myProj="$homedir/myprojects/$projName"
 out="$myProj/out"
-buse="$out/buse"
+bhw="$out/bhw"
 img="$myProj/images/linux"
 buildLog="$myProj/build/build.log"
 
@@ -175,7 +175,7 @@ cpapp2out(){
         exit
     fi
     cp -vf $img/rootfs.tar.gz $out
-    binPath=$(find . -name mytestspw|grep "bin/$1")
+    binPath=$(find . -name $1|grep "bin/$1")
     cp -vf $binPath $out/blite/bin/
     codePath=$myProj/project-spec/meta-user/recipes-apps/$1
     rm -rf $out/blite/code/$1
@@ -195,31 +195,31 @@ cp2out(){
     bitname=$(getbitname)
     dtboname="${bitname%.bit.bin}.dtbo"
     mysh="$homedir/mysh"
-    fpgaInit="fpgaInitok.sh"
+    # fpgaInit="fpgaInitok.sh"
     check_inproj
 
     rm -rf $out
     mkdir -p $out
-    mkdir -p $buse
+    mkdir -p $bhw
 
 
     cd $img
     cp BOOT.BIN image.ub rootfs.tar.gz boot.scr $out
-    # cp pl.dtbo $buse/
-    cp pl.dtbo $buse/$dtboname
-    cp system.bit $buse/$bitname
-    # cp system.bit $buse/
+    # cp pl.dtbo $bhw/
+    cp pl.dtbo $bhw/$dtboname
+    cp system.bit $bhw/$bitname
+    # cp system.bit $bhw/
     #Copy the actual files pointed to by soft links
     cp -aLR ~/share/blite $out
 
-    # echo "fpgabit=$bitname">$buse/$fpgaInit
-    # cat $mysh/fpgaInit.sh >> $buse/$fpgaInit
+    # echo "fpgabit=$bitname">$bhw/$fpgaInit
+    # cat $mysh/fpgaInit.sh >> $bhw/$fpgaInit
     echo "---$out---"
     ls -l $out/
     echo "---$out/blite---"
     ls -l $out/blite/
-    echo "---$buse---"
-    ls -l $buse/
+    echo "---$bhw---"
+    ls -l $bhw/
 
 }
 cp2acer(){
