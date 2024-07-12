@@ -1,0 +1,9 @@
+#!/bin/bash
+echo sudo dmesg\|tail
+echo sudo minicom -s
+echo "--[configuration]--"
+echo "A- Serial Device: /dev/ttyUSB0"
+echo "E- Bps/Par/Bits: 115200 8N1"
+echo "F- Hardware Flow Control: No"
+echo "--Save setup as dfl--"
+echo sudo minicom -D /dev/ttyUSB0
