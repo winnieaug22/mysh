@@ -96,7 +96,7 @@ hint(){
                 echo -e "$magenta${line}$end"
             done
             echo "$bootspt"
-            cat "$bootspt" | grep FPGA_PREFIX | while IFS= read -r line; do
+            cat "$bootspt" | grep "FPGA_PREFIX=" | while IFS= read -r line; do
                 echo -e "$cyan${line}$end"
             done
             # ls -l $xsaPath/
