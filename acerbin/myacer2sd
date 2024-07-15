@@ -18,25 +18,20 @@ bnet="$myfs/etc/network/interfaces"
 
 hint() {
     echo "Usage:"
-    echo "  myacer2sd.sh all [out dir] [net interface]"
-    echo "  myacer2sd.sh onlyblite [net interface]"
+    echo "  myacer2sd all [dir of out] [ config of net: ori hw01 hw02 ]"
+    echo "  myacer2sd cpblite [dir of out] [ ori hw01 hw02 ]"
     echo "Examples:"
-    echo "  myacer2sd.sh all out ori"
-    echo "  myacer2sd.sh all out hw01"
-    echo "  myacer2sd.sh all out hw02"
-    echo "  myacer2sd.sh onlyblite hw01"
-    echo "  myacer2sd.sh onlyblite hw02"
+    echo "  myacer2sd all out hw02"
+    echo "  myacer2sd cpblite out hw02"
 }
 
-if [ "$#" -lt 2 ]; then
-    hint
-    exit 1
-fi
-
-mode=$1
-netintf=$3
-
-if [ "$mode" == "all" ]; then
+validate_input() {
+    if [ "$#" -lt 3 ]; then
+        hint
+        exit 1
+    fi
+}
+check_dir_exist(){
     if [ ! -d "$out" ]; then
         echo "STOP: $out not exist"
         exit 1
@@ -48,13 +43,17 @@ if [ "$mode" == "all" ]; then
         echo "STOP: $myboot not exist"
         exit 1
     fi
-    cd $myboot
-    rm -rf *
 
     if [ ! -d "$myfs" ]; then
         echo "STOP: $myfs not exist"
         exit 1
     fi
+}
+
+prepare_all() {
+    cd $myboot
+    rm -rf *
+
     echo "sudo rm -rf $myfs/*"
     cd $myfs
     sudo rm -rf *
@@ -64,31 +63,66 @@ if [ "$mode" == "all" ]; then
     echo "sudo tar zxf $fsfile -C $myfs"
     sudo tar zxf $fsfile -C $myfs
     echo "----"
-fi
+}
 
-cd $out
-sudo cp -rf $bhw/* $bfirmdir/
-sudo cp -rf $blite $brootdir/
+copy_blite() {
+    cd $out
+    sudo cp -rf $bhw/* $bfirmdir/
+    sudo cp -rf $blite $brootdir/
+    echo "sudo cp $blite/bobin/bashrc $brootdir/.bashrc"
+    echo "sudo mkdir -p $brootdir/.ssh"
+    echo "sudo bash -c \"cat ${blite}/bobin/mybo_sshdir/* > ${brootdir}/.ssh/authorized_keys\""
+    sudo cp $blite/bobin/bashrc $brootdir/.bashrc
+    sudo mkdir -p $brootdir/.ssh
+    sudo bash -c "cat ${blite}/bobin/mybo_sshdir/* > ${brootdir}/.ssh/authorized_keys"
+}
 
-if [ -z "$netintf" ]; then
-    echo "Please provide a network interface argument (ori, hw01, or hw02)"
-    exit 1
-fi
+configure_network() {
+    if [ -z "$netintf" ]; then
+        echo "Please provide a network interface argument (ori, hw01, or hw02)"
+        exit 1
+    fi
 
-if [ "$netintf" == "ori" ]; then
-    echo "Input value is ori, no action required"
-elif [ "$netintf" == "hw01" ] || [ "$netintf" == "hw02" ]; then
-    sudo mv -v $bnet ${bnet}_ori
-    sudo cp -v $blite/bobin/mybo_netdir/interfaces_$netintf $bnet
-else
-    echo "Invalid input value, please use (ori, hw01, or hw02)"
-    exit 1
-fi
+    if [ "$netintf" == "ori" ]; then
+        echo "Input value is ori, no action required"
+    elif [ "$netintf" == "hw01" ] || [ "$netintf" == "hw02" ]; then
+        sudo mv -v $bnet ${bnet}_ori
+        sudo cp -v $blite/bobin/mybo_netdir/interfaces_$netintf $bnet
+    else
+        echo "Invalid input value, please use (ori, hw01, or hw02)"
+        exit 1
+    fi
 
-cd $bfirmdir
-echo "---$(pwd)---"
-ls -l *
-cd $brootdir
-echo "---$(pwd)---"
-ls -l *
+}
+show_result(){
+    cd $bfirmdir
+    echo "---$(pwd)---"
+    ls -l *
+    sudo bash -c "cd $brootdir"
+    echo "---$(pwd)---"
+    ls -l *
+}
+main() {
+    validate_input "$@"
+
+    mode=$1
+    netintf=$3
+    check_dir_exist
+
+    if [ "$mode" == "all" ]; then
+        prepare_all
+        copy_blite
+        configure_network
+        show_result
+    elif [ "$mode" == "cpblite" ]; then
+        copy_blite
+        configure_network
+        show_result
+    else
+        hint
+        exit 1
+    fi
+}
+
+main "$@"
 
