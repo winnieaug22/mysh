@@ -1,58 +1,94 @@
 #!/bin/bash
+
 media="/media/winnie"
 myboot="$media/MYBOOT"
 myfs="$media/myfs"
-out="/home/winnie/$1"
+out="/home/winnie/$2"
 #---out dir---
-bootfile="boot.scr BOOT.BIN  image.ub"
+bootfile="boot.scr BOOT.BIN image.ub"
 fsfile="rootfs.tar.gz"
 # bhw/*    --> /lib/firmware in SD card
 # blite dir --> /lib/firmware in SD card
 bhw="bhw"
 blite="blite"
-# bhw="system.bit pl.dtbo"
 #-----------
 bfirmdir="$myfs/lib/firmware"
 brootdir="$myfs/home/root"
-hint(){
-    echo myacer2sd.sh out
+bnet="$myfs/etc/network/interfaces"
+
+hint() {
+    echo "Usage:"
+    echo "  myacer2sd.sh all [out dir] [net interface]"
+    echo "  myacer2sd.sh onlyblite [net interface]"
+    echo "Examples:"
+    echo "  myacer2sd.sh all out ori"
+    echo "  myacer2sd.sh all out hw01"
+    echo "  myacer2sd.sh all out hw02"
+    echo "  myacer2sd.sh onlyblite hw01"
+    echo "  myacer2sd.sh onlyblite hw02"
 }
-if [ "$#" -eq 0 ]; then
+
+if [ "$#" -lt 2 ]; then
     hint
-    exit
+    exit 1
 fi
-if [ ! -d "$out" ]; then
-    echo "STOP: $out not exist"
-    exit
-fi
-echo "$out to sdcard:"
-if [ ! -d "$myboot" ]; then
-    echo "STOP: $myboot not exist"
-    exit
-fi
-cd $myboot
-rm -rf *
 
-if [ ! -d "$myfs" ]; then
-    echo "STOP: $myfs not exist"
-    exit
+mode=$1
+netintf=$3
+
+if [ "$mode" == "all" ]; then
+    if [ ! -d "$out" ]; then
+        echo "STOP: $out not exist"
+        exit 1
+    fi
+
+    echo "$out to sdcard:"
+
+    if [ ! -d "$myboot" ]; then
+        echo "STOP: $myboot not exist"
+        exit 1
+    fi
+    cd $myboot
+    rm -rf *
+
+    if [ ! -d "$myfs" ]; then
+        echo "STOP: $myfs not exist"
+        exit 1
+    fi
+    echo "sudo rm -rf $myfs/*"
+    cd $myfs
+    sudo rm -rf *
+
+    cd $out
+    cp $bootfile $myboot
+    echo "sudo tar zxf $fsfile -C $myfs"
+    sudo tar zxf $fsfile -C $myfs
+    echo "----"
 fi
-echo "sudo rm -rf $myfs/*"
-cd $myfs
-sudo rm -rf *
 
 cd $out
-cp $bootfile $myboot
-echo "sudo tar zxf $fsfile -C $myfs"
-sudo tar zxf $fsfile -C $myfs
-echo "----"
-cd $out
-# sudo cp $bhw to board
 sudo cp -rf $bhw/* $bfirmdir/
 sudo cp -rf $blite $brootdir/
+
+if [ -z "$netintf" ]; then
+    echo "Please provide a network interface argument (ori, hw01, or hw02)"
+    exit 1
+fi
+
+if [ "$netintf" == "ori" ]; then
+    echo "Input value is ori, no action required"
+elif [ "$netintf" == "hw01" ] || [ "$netintf" == "hw02" ]; then
+    sudo mv -v $bnet ${bnet}_ori
+    sudo cp -v $blite/bobin/mybo_netdir/interfaces_$netintf $bnet
+else
+    echo "Invalid input value, please use (ori, hw01, or hw02)"
+    exit 1
+fi
+
 cd $bfirmdir
 echo "---$(pwd)---"
 ls -l *
 cd $brootdir
 echo "---$(pwd)---"
 ls -l *
+
