@@ -1,0 +1,40 @@
+#!/bin/bash
+
+echo "ln ~/mysh/mygdbdir/gdbinit ~/.gdbinit"
+echo "https://www.cse.unsw.edu.au/~learn/debugging/modules/gdb_init_file/"
+echo "---setting---"
+echo "dir ~/myproject"
+echo "set args tx sample 1"
+echo "---gdb-dashboard---"
+echo "ln ~/mysh/mygdbdir/gdbset ."
+echo "source gdbset"
+echo "https://github.com/cyrus-and/gdb-dashboard"
+echo "(gdb)help dashboard"
+echo "(gdb)dashboard -layout source assembly registers stack"
+echo "---gdb---"
+echo "(gdb)next -->for c code"
+echo "(gdb)nexti -->for asm code"
+echo "(gdb)stepi -->for asm code"
+echo "(gdb)info register / variables / frame"
+echo "(gdb)list"
+echo "(gdb)bt"
+echo "(gdb)layout next"
+echo "---cgdb: how to use---"
+echo "stack: info frame"
+echo "20 register(64bit) in hex: x/20xg \$rsp"
+echo "data: info variables"
+echo "x/<n>xg <address>"
+echo "text: disassemble main"
+echo "info line"
+echo "x/i \$pc"
+echo "x/10i 0xaddress_start"
+echo "---gdbserver---"
+cat << EOF
+cd /data;./gdbserver 192.168.1.100:6666 --attach \$(ps |grep "S\\ \\ \\ \\ iothub_convenience_sample"|awk '{print $1}')
+cd /data;./gdbserver 192.168.1.100:6666 ./cccping 1
+set solib-search-path ~/server43/dGPT2742/dev/build/rootfs/lib/:~/server43/dGPT2742/dev/build/rootfs/usr/lib/:/opt/toolchains/crosstools-arm-gcc-5.3-linux-4.1-glibc-2.22-binutils-2.25/lib/
+dir  ~/server43/dGPT2742/dev/build/sysapps/bridge-utils-1.0.6/brctl
+target remote 192.168.1.1:6666
+EOF
+echo "---"
+

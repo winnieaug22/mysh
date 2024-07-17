@@ -1,0 +1,9 @@
+dashboard -layout source assembly registers stack
+set args tx sample 1
+b main
+
+#help dashboard
+#dir
+#x/<n>xg <address>
+#x/20xg \$rsp
+#x/10i 0xaddress_start
