@@ -4,7 +4,7 @@
 if [ $# -lt 1 ]; then
     echo "Usage: $0 <dhcp | static> [MAC_address | IP_address | any]"
     echo "Example:"
-    echo "$0 dhcp "22:22:33:33:22:01"
+    echo "$0 dhcp 22:22:33:33:22:01"
     echo "$0 static 192.168.0.6"
     echo "$0 dhcp any"
     exit 1
