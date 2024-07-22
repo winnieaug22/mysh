@@ -76,12 +76,12 @@ export PATH="$PATH:$HOME/mysh:$HOME/mysh/acerbin"
 case $OS in
     "Linux")
         echo "Linux"
-        C_ALL=
-        LANG=
-        LC_CTYPE=zh_TW.utf8
-        LC_COLLATE=C
-        export LC_TIME=C
-        export LANG LC_CTYPE LC_COLLATE
+        # C_ALL=
+        # LANG=
+        # LC_CTYPE=zh_TW.utf8
+        # LC_COLLATE=C
+        # export LC_TIME=C
+        # export LANG LC_CTYPE LC_COLLATE
     ;;
     "Darwin")
         export PATH=$HOME/opt/bin:$HOME/opt/program/Android/ndk:$PATH
