@@ -1,0 +1,45 @@
+[user]
+	name = Yu-Ting Chen
+	email = winnie.aug22@gmail.com
+[alias]
+    ll   = log --pretty=oneline --abbrev-commit
+    lg   = log --pretty=oneline --abbrev-commit --graph --decorate --date=relative
+    lgt  = log --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+    lgtt = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+    la   = log --graph --pretty=format:'%Cred%h%Creset -%C(bold yellow)%d%Creset %s %Cgreen(%cr) %C(bold cyan)%an%Creset %C(blue)<%ce>%Creset' --abbrev-commit --all
+    diffall = git-diffall
+    difftooln = difftool --name-only
+	ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
+    st = status
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	log = auto
+	interactive = auto
+	ui = true
+    pager = true
+[sendemail]
+	smtpencryption = tls
+	smtpserver = smtp.gmail.com
+	smtpuser = winnie.aug22
+	smptserverport = 587
+[core]
+	editor = vim
+[merge]
+	tool = vimdiff
+	; tool = meld
+[mergetool]
+	trustExitCode = false
+[diff]
+	tool = vimdiff
+	; tool = meld
+[gui]
+    encoding = utf-8
+[i18n]
+    commitencoding = utf-8
+    logoutputencoding = utf-8
+[pull]
+	ff = only
+[init]
+	defaultBranch = master

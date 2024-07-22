@@ -1,0 +1,22 @@
+#!/bin/bash
+if [ "$#" -eq 0 ]; then
+    echo "myset [mechine name]"
+    echo "myset acer"
+    echo "myset s149"
+    echo "myset vm"
+    exit
+fi
+mechine=$1
+echo "git clone git@github.com:winnieaug22/.rcfile.git"
+echo "ln -s ~/mysh/mysetdir/$mechine/bashrc ~/.bashrc"
+echo "ln -s ~/mysh/mysetdir/$mechine/ssh/config ~/.ssh/config"
+echo "ln -s ~/mysh/mysetdir/$mechine/ssh/authorized_keys ~/.ssh/authorized_keys"
+echo ""
+echo "ln -s ~/mysh/mysetdir/gdbinit ~/.gdbinit"
+echo "ln -s ~/mysh/mysetdir/tmux.conf ~/.tmux.conf"
+echo "ln -s ~/mysh/mysetdir/gitconfig ~/.gitconfig"
+echo ""
+echo "ln -s .rcfile/.bash_aliases ."
+echo "ln -s .rcfile/.dir_colors ."
+echo "ln -s .rcfile/.cgdb ."
+echo ""
