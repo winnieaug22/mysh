@@ -1,0 +1,3 @@
+#!/bin/bash
+echo "tmux ls"
+echo "tmux attach-session -t 2"
