@@ -1,4 +1,5 @@
 #!/bin/bash
+source mycolor
 timeStart=$(date +%s)
 homedir="/home/winnie"
 toolpath="~/tool/petalinux_v2021_2"
@@ -23,23 +24,6 @@ remoteUrl="http://140.96.28.94:3000/LEO/$projName.git"
 YELLOW='\033[1;33m'
 NC='\033[0m' #reset color
 
-end="\e[0m"
-black="\e[1;30m"
-red="\e[1;31m"
-green="\e[1;32m"
-yellow="\e[1;33m"
-blue="\e[1;34m"
-magenta="\e[1;35m"
-cyan="\e[1;36m"
-white="\e[1;37m"
-darkblack="\e[30m"
-darkred="\e[31m"
-darkgreen="\e[32m"
-darkyellow="\e[33m"
-darkblue="\e[34m"
-darkmagenta="\e[35m"
-darkcyan="\e[36m"
-darkwhite="\e[37m"
 plDtsi="$myProj/components/plnx_workspace/device-tree/device-tree/pl.dtsi"
 bootspt="$myProj/project-spec/meta-user/recipes-apps/bootscript/files/bootscript"
 
