@@ -1,9 +1,9 @@
 #!/bin/bash
 mygit="/home/winnie/mysh/mygitdir"
-filelist="$mygit/filelist"
-filelist_nl="$mygit/filelist_nl"
-mygitdiff="$mygit/mygitdiff"
-log="$mygit/log"
+filelist="$mygit/nfilelist"
+filelist_nl="$mygit/nfilelist_nl"
+mygitdiff="$mygit/nmygitdiff"
+log="$mygit/nlog"
 
 hint(){
     error=$1
