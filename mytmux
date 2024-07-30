@@ -1,3 +1,8 @@
 #!/bin/bash
 echo "tmux ls"
-echo "tmux attach-session -t 2"
+echo "tmux attach-session -t 1"
+echo ":tmux rename-window myname"
+echo ":kill-window -t myname"
+echo ":kill-window -t 2"
+echo ":list-panes"
+echo ":kill-pane -t 3"
