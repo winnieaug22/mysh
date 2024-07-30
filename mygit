@@ -3,7 +3,7 @@ mygit="/home/winnie/mysh/mygitdir"
 filelist="$mygit/nfilelist"
 filelist_nl="$mygit/nfilelist_nl"
 mygitdiff="$mygit/nmygitdiff"
-log="$mygit/nlog"
+mylog="$mygit/nlog"
 
 hint(){
     error=$1
@@ -42,17 +42,17 @@ else
 fi
 echo "---modified---"
 echo $filelist_nl
-echo $log
+echo $mylog
 echo "---git clone---"
 echo "git clone --branch develop http://140.96.28.94:3000/LEO/leo_zcu111v2021_2all.git"
 echo "---push---"
 echo "git add `cat $filelist`"
 echo ""
 echo "git diff --staged"
-# echo "git commit `cat $filelist` -m \"`cat $log`\""
+# echo "git commit `cat $filelist` -m \"`cat $mylog`\""
 echo ""
 echo "git commit `cat $filelist`"
-echo ":r !cat ~/mysh/mygitdir/log"
+echo ":r !cat $mylog"
 echo
 echo "git lg ; git show"
 echo "git push"
