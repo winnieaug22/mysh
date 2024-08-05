@@ -70,7 +70,7 @@ hint(){
 			echo petalinux-config -c kernel
 			echo petalinux-config -c rootfs
 			echo petalinux-package --force --boot --fsbl --fpga no --u-boot
-			echo petalunux-build
+			echo petalinux-build
 			echo myrun cp2out
 			echo myrun cp2acer
             echo ---$xsaPath---
