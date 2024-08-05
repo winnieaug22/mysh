@@ -1,6 +1,7 @@
 #!/bin/bash
 
-echo "ln ~/mysh/mygdbdir/gdbinit ~/.gdbinit"
+echo "ln -s ~/.rcfile/.gdbinit ~/.gdbinit"
+echo "ln -s ~/.rcfile/.cgdb ~/.cgdb"
 echo "https://www.cse.unsw.edu.au/~learn/debugging/modules/gdb_init_file/"
 echo "---setting---"
 echo "dir ~/myproject"
