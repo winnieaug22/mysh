@@ -70,6 +70,7 @@ esac
 ###############################################################################
 # set env in different OS
 PATH=$HOME/mysh:$PATH
+PATH=$HOME/mytestbin:$PATH
 OS=`uname -s`
 
 export PATH=$HOME/opt/bin:$PATH
