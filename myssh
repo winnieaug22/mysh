@@ -1,5 +1,8 @@
 #!/bin/bash
 echo "ssh-keygen -t ed25519 -C \"s149Tgithub\""
+echo "[vm]ssh-copy-id -i id_rsa_vmTs149.pub winnie@140.96.28.149"
+echo "[vm]scp id_rsa_vmTs149.pub winnie@140.96.28.149:.ssh/"
+echo "[s149] cat id_rsa_vmTs149.pub >> authorized_keys"
 echo
 echo "eval \"\$(ssh-agent -s)\""
 echo "ssh-add ~/.ssh/id_ed25519_s149Tgithub_mysh"
