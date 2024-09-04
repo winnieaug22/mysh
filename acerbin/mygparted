@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Directory to list mounted points from
+dir="/media/winnie"
+
+# Check if the directory exists
+if [ ! -d "$dir" ]; then
+  echo "Directory $dir does not exist."
+  exit 1
+fi
+
+# Loop through each mounted point in the specified directory
+echo "--$dir--"
+for mountPoint in "$dir"/*; do
+  # Check if the item is a directory (mounted point)
+  if [ -d "$mountPoint" ]; then
+    # Use df to find the filesystem for the current mounted point
+    filesystem=$(df "$mountPoint" | awk 'NR==2 {print $1}')
+    
+    # Print the mounted point and its corresponding filesystem
+    echo "Filesystem: $filesystem, Mounted Point: $mountPoint"
+  fi
+done
