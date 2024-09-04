@@ -1,0 +1,51 @@
+#!/bin/bash
+#git clone git@github.com:winnieaug22/mysh
+
+function die
+{
+	echo >&2 "$@"
+	exit 1
+}
+runcmd()
+{
+    [ $# -eq 0 ] && return
+    echo "$@"
+    eval "$@" || die "failed"
+}
+
+runcmd sudo apt update
+
+#winnie needs
+runcmd sudo apt install -y curl vim vim-addon-manager vim-snippets nodejs vim-nox neovim
+
+runcmd sudo apt install -y git-core gdb gdb-doc \
+    clang clang-format clang-tidy clang-tools clangd fzf llvm manpages-posix net-tools \
+    silversearcher-ag tmux dos2unix jq binutils aptitude openssh-client python \
+    wget wireshark tcpdump
+
+
+
+# packages typically required for kernel build
+runcmd sudo apt install -y bison flex libncurses5-dev ncurses-dev xz-utils libssl-dev libelf-dev util-linux tar
+
+# other packages...
+runcmd sudo apt install -y bc bpfcc-tools bsdmainutils clang cmake cppcheck cscope curl \
+ dwarves exuberant-ctags fakeroot flawfinder git gnome-system-monitor gnuplot \
+ hwloc indent kernelshark libnuma-dev libjson-c-dev linux-tools-$(uname -r) \
+ net-tools numactl openjdk-16-jre openssh-server perf-tools-unstable psmisc \
+ python3-distutils rt-tests smem sparse stress sysfsutils tldr-py trace-cmd \
+ tree tuna virt-what
+
+#runcmd sudo apt install -y virtualbox-guest-additions-iso
+#-----hand made---
+#mkdir 123
+#sudo mount /usr/share/virtualbox/VBoxGuestAdditions.iso 123
+#cd 123
+#sudo ./VBoxLinuxAdditions.run
+#---
+#-- Add yourself to the vboxsf group (to gain access to VirtualBox shared folders);
+#-- will require you to log out and back in (or even reboot) to take effect
+#groups |grep -q -w vboxsf || runcmd sudo usermod -G vboxsf -a ${USER}
+#-----------------
+
+exit 0
