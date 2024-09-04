@@ -16,12 +16,12 @@ runcmd()
 runcmd sudo apt update
 
 #winnie needs
+runcmd sudo apt install -y wget wireshark tcpdump gparted
 runcmd sudo apt install -y curl vim vim-addon-manager vim-snippets nodejs vim-nox neovim
 
 runcmd sudo apt install -y git-core gdb gdb-doc \
     clang clang-format clang-tidy clang-tools clangd fzf llvm manpages-posix net-tools \
-    silversearcher-ag tmux dos2unix jq binutils aptitude openssh-client \
-    wget wireshark tcpdump gparted
+    silversearcher-ag tmux dos2unix jq binutils aptitude openssh-client
 
 
 
