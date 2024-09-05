@@ -6,7 +6,7 @@ dir="/media/winnie"
 # Check if the directory exists
 if [ ! -d "$dir" ]; then
   echo "Directory $dir does not exist."
-  exit 1
+  # exit 1
 fi
 
 # Loop through each mounted point in the specified directory
