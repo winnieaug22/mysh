@@ -16,8 +16,28 @@ for mountPoint in "$dir"/*; do
   if [ -d "$mountPoint" ]; then
     # Use df to find the filesystem for the current mounted point
     filesystem=$(df "$mountPoint" | awk 'NR==2 {print $1}')
-    
+
     # Print the mounted point and its corresponding filesystem
     echo "Filesystem: $filesystem, Mounted Point: $mountPoint"
   fi
 done
+message=$(cat << EOF
+--- parted  ---
+sudo fdisk -l /dev/sdb
+sudo umount /dev/sdb
+sudo parted /dev/sdb
+(parted -start)
+mklabel msdos
+mkpart primary fat32 1MiB 1GiB
+mkpart primary ext4 1GiB 20GiB
+print
+quit
+(parted -end)
+sudo mkfs.fat -F32 /dev/sdb1 -n MYBOOT
+sudo mkfs.ext4 /dev/sdb2 -L myfs
+sudo fdisk -l /dev/sdb
+lsblk -o NAME,LABEL,SIZE,FSTYPE,MOUNTPOINT
+EOF
+)
+
+echo "$message"
