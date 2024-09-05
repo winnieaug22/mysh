@@ -24,7 +24,7 @@ done
 message=$(cat << EOF
 --- parted  ---
 sudo fdisk -l /dev/sdb
-sudo umount /dev/sdb
+sudo umount /dev/sdb1
 sudo parted /dev/sdb
 (parted -start)
 mklabel msdos
