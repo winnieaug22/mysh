@@ -24,7 +24,7 @@ done
 message=$(cat << EOF
 --- parted  ---
 sudo fdisk -l /dev/sdb
-sudo umount /dev/sdb1
+sudo umount /dev/sdb*
 sudo parted /dev/sdb
 (parted -start)
 mklabel msdos
@@ -35,7 +35,13 @@ quit
 (parted -end)
 sudo mkfs.fat -F32 /dev/sdb1 -n MYBOOT
 sudo mkfs.ext4 /dev/sdb2 -L myfs
-sudo fdisk -l /dev/sdb
+lsblk -o NAME,LABEL,SIZE,FSTYPE,MOUNTPOINT
+--- dd ---
+sudo umount /dev/sdb*
+sudo dd if=/dev/sda of=/dev/sdb bs=4M status=progress && sync
+sudo dd if=/dev/sdb1 of=/dev/sdb2 bs=4M status=progress && sync
+sudo dd if=/dev/sdb of=~/sdcard.iso bs=4M status=progress && sync
+sudo dd if=~/image.iso of=/dev/sdb bs=4M status=progress && sync
 lsblk -o NAME,LABEL,SIZE,FSTYPE,MOUNTPOINT
 EOF
 )
