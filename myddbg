@@ -1,0 +1,9 @@
+#!/bin/bash
+source mycolor
+myddbg_dir="/home/winnie/mysh/myddbgdir/"
+echo -e "$yellow--- Makefile ---$end"
+cat ${myddbg_dir}Makefile
+echo -e "$yellow--- myddbg.h ---$end"
+cat ${myddbg_dir}myddbg.h
+echo -e "$yellow--- tt.c ---$end"
+cat ${myddbg_dir}tt.c
