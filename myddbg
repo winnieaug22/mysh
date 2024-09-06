@@ -1,14 +1,20 @@
 #!/bin/bash
 source mycolor
 myddbg_dir="/home/winnie/mysh/myddbgdir/"
-echo -e "$yellow--- myddbg.h ---$end"
-cat ${myddbg_dir}myddbg.h
-echo -e "$yellow--- tt.c ---$end"
-cat ${myddbg_dir}tt.c
-echo -e "$yellow--- Makefile ---$end"
-cat ${myddbg_dir}Makefile
-echo -e "$yellow--- Makefile_df ---$end"
-echo -e "$red"
-cat ${myddbg_dir}Makefile_df
-echo -e "$end"
+echo -e "$blue--- how to use ---$end"
+cat << EOF
+cd ${myddbg_dir}
+[${myddbg_dir}Makefile] CFLAGS += -DMYDDBG
+EOF
+echo -e "$green--- exe ---$end"
+echo "cat ${myddbg_dir}Makefile"
+echo "cat ${myddbg_dir}myddbg.h"
+echo "cat ${myddbg_dir}tt.c"
+echo -e "$green--- static lib in sub-dir ---$end"
+echo "cat ${myddbg_dir}mylibdir/Makefile"
+echo "cat ${myddbg_dir}mylibdir/mylib.c"
+echo "cat ${myddbg_dir}mylibdir/mylib.h"
+
+echo -e "$red--- exe:default ---$end"
+echo "cat ${myddbg_dir}Makefile_df"
 

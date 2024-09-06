@@ -1,10 +1,8 @@
 #include "myddbg.h"
-#include "mylib.h"
 #include "stdio.h"
 /* int main(int argc, char **argv) */
-int main()
+int mylib()
 {
-    myddbg_p("%s","---winnie---\n");
-    mylib();
+    myddbg_p("%s","---winnie: mylib---\n");
     return 0;
 }
