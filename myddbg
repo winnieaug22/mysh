@@ -17,4 +17,15 @@ echo "cat ${myddbg_dir}mylibdir/mylib.h"
 
 echo -e "$red--- exe:default ---$end"
 echo "cat ${myddbg_dir}Makefile_df"
+echo -e "$yellow--- mybook ---$end"
+cat << EOF
+MYDEBUG := n
+MYDEBUG := y
+ifeq (\${MYDEBUG}, y)
+    ccflags-y   += -DDEBUG -g -ggdb -gdwarf-4 -Wall -fno-omit-frame-pointer -fvar-tracking-assignments
+else
+    ccflags-y   += --strip-debug
+endif
+EOF
+echo "----"
 
