@@ -8,7 +8,7 @@ Host github_vim
 
 Host s149
     HostName 140.96.28.149
-    IdentityFile ~/.ssh/id_rsa_acerTs149
+    IdentityFile ~/.ssh/id_rsa_miniTs149
     User winnie
 
 Host vm
