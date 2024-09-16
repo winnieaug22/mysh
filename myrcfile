@@ -1,9 +1,10 @@
 #!/bin/bash
 if [ "$#" -eq 0 ]; then
     echo "$0 [mechine name]"
-    echo "$0 acer"
     echo "$0 s149"
     echo "$0 vm"
+    echo "$0 mini"
+    echo "$0 acer"
     exit
 fi
 mechine=$1

@@ -32,9 +32,10 @@ runcmd sudo apt install -y bison flex libncurses5-dev ncurses-dev xz-utils libss
 runcmd sudo apt install -y bc bpfcc-tools bsdmainutils clang cmake cppcheck cscope curl \
  dwarves exuberant-ctags fakeroot flawfinder git gnome-system-monitor gnuplot \
  hwloc indent kernelshark libnuma-dev libjson-c-dev linux-tools-$(uname -r) \
- net-tools numactl openjdk-16-jre openssh-server perf-tools-unstable psmisc \
+ net-tools numactl openssh-server perf-tools-unstable psmisc \
  python3-distutils rt-tests smem sparse stress sysfsutils tldr-py trace-cmd \
- tree tuna virt-what
+ tree tuna virt-what \
+ #openjdk-16-jre
 
 #runcmd sudo apt install -y virtualbox-guest-additions-iso
 #-----hand made---

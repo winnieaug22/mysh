@@ -2,4 +2,26 @@
 myhome=/home/winnie/
 echo "git clone git@github.com:winnieaug22/.vim.git $myhome.vim"
 echo "sudo apt-get install -y curl vim vim-addon-manager vim-snippets nodejs vim-nox neovim"
+echo "---nodejs on Ubuntu: NodeSource PPA---"
+cat <<EOF
+node -v
+sudo aptitude: remove(-) nodejs
+curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/nodesource_setup.sh
+sudo bash /tmp/nodesource_setup.sh
+sudo aptitude: Upgrate, then install(+) nodejs
+node -v
+EOF
+echo "---neovim on Ubuntu: PPA --"
+cat << EOF
+sudo aptitude: remove(-) neovim
+sudo add-apt-repository ppa:neovim-ppa/stable
+sudo aptitude: Upgrate, then install(+) neovim
+neovim --version
+EOF
+echo "---vim on Ubuntu: PPA --"
+cat << EOF
+sudo aptitude: remove(-) vim
+sudo add-apt-repository ppa:jonathonf/vim
+sudo aptitude: Upgrate, then install(+) vim
+EOF
 # echo curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim

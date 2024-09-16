@@ -1,0 +1,32 @@
+Host github_mysh
+    HostName git@github.com:winnieaug22/mysh.git
+    IdentityFile ~/.ssh/id_rsa_acerTgithub_mysh
+
+Host github_vim
+    HostName git@github.com:winnieaug22/.vim.git
+    IdentityFile ~/.ssh/id_rsa_acerTgithub_vim
+
+Host s149
+    HostName 140.96.28.149
+    IdentityFile ~/.ssh/id_rsa_acerTs149
+    User winnie
+
+Host vm
+    HostName 140.96.28.237
+    IdentityFile ~/.ssh/id_rsa_acerTvm
+    User winnie
+
+Host top
+    # HostName 192.168.0.6
+    # hwaddress ether 22:22:33:33:22:01
+    HostName 140.96.28.61
+    IdentityFile ~/.ssh/id_rsa_acerTboard
+    User root
+
+Host down
+    # HostName 192.168.0.7
+    # hwaddress ether 22:22:33:33:22:02
+    HostName 140.96.28.62
+    IdentityFile ~/.ssh/id_rsa_acerTboard
+    User root
+
