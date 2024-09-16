@@ -8,6 +8,11 @@ Host acer
     IdentityFile ~/.ssh/id_rsa_s149Tacer
     User winnie
 
+Host mini
+    HostName 140.96.28.192
+    IdentityFile ~/.ssh/id_rsa_s149Tmini
+    User winnie
+
 Host vm
     HostName 140.96.28.237
     IdentityFile ~/.ssh/id_rsa_s149Tvm
