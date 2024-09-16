@@ -1,9 +1,21 @@
 #!/bin/bash
 echo "sudo apititude: install [tigervnc-standalone-server] [tigervnc-viewer]"
-echo "vncserver :1 -localhost no"
-echo "vncserver -list"
-echo "vncpasswd"
-echo "vncserver -kill :1"
+cat << EOF
+vncserver :1 -localhost no
+vncserver -list
+vncpasswd
+vncserver -kill :1
+--- vim .vnc/xstartup ---
+exec /etc/X11/xinit/xinitrc
+[ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup
+[ -r \$HOME/.Xresources ] && xrdb \$HOME/.Xresources
+mate-session &
+--- error: Could not acquire name on session bus ---
+sudo vim /etc/X11/Xsession.d/55mate-session_materc
+if [ "\$BASESTARTUP" = x-session-manager ]; then
+    unset DBUS_SESSION_BUS_ADDRESS
+--- test: vncviewer localhost:1 ---
+EOF
 echo "---client---"
 echo "vncviewer 140.96.28.237:5901"
 echo "vncviewer 140.96.28.101:5901"
