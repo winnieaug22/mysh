@@ -42,6 +42,7 @@ sudo dd if=/dev/sda of=/dev/sdb bs=4M status=progress && sync
 sudo dd if=/dev/sdb1 of=/dev/sdb2 bs=4M status=progress && sync
 sudo dd if=/dev/sdb of=~/sdcard.iso bs=4M status=progress && sync
 sudo dd if=~/image.iso of=/dev/sdb bs=4M status=progress && sync
+sudo dd if=~/myproject/ubuntu-20.04.6-desktop-amd64.iso | pv -s 4G | sudo dd of=/dev/sdb
 lsblk -o NAME,LABEL,SIZE,FSTYPE,MOUNTPOINT
 EOF
 )
