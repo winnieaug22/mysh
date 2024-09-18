@@ -180,3 +180,6 @@ export PATH=$HOME/.rcfile/.bin/:$PATH
 #:scscope find t
 #:Grep
 export PATH=$HOME/android-ndk-r10:$PATH
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519_acerTgithub_mysh
+
