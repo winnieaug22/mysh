@@ -180,3 +180,5 @@ export LIBGL_ALWAYS_INDIRECT=1
 ##:scscope find t
 ##:Grep
 #export PATH=$HOME/android-ndk-r10:$PATH
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519_s149Tgithub_mysh
