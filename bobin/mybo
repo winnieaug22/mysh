@@ -1,6 +1,7 @@
 #!/bin/bash
 echo "chmod 777 mybo mybo_net"
-echo "./mybo_net dhcp 22:22:33:33:22:21"
+echo "./mybo_net dhcp 00:50:56:C2:AA:8F"
+echo "./mybo_net dhcp 00:50:56:DF:EE:A8"
 echo "mkdir -p /home/root/.ssh"
 echo "cat mybo_sshdir/* >> authorized_keys"
 echo "cp bashrc /home/root/.bashrc"
