@@ -1,0 +1,25 @@
+#!/bin/bash
+source mycolor
+cat << EOF
+--- [Ubuntu] folder to windows ---
+sudo aptitude --> samba
+sudo vim /etc/samba/smb.conf
+EOF
+echo -e "$yellow"
+cat <<EOF
+[shared_mini]
+path = /home/winnie
+browseable = yes
+read only = no
+guest ok = yes
+force user = winnie
+EOF
+echo -e "$end"
+cat << EOF
+sudo smbpasswd -a winnie
+ -->asdfasdf
+sudo systemctl restart smbd
+
+--- [windows] ---
+\\\\140.96.28.192\\shared_mini
+EOF
