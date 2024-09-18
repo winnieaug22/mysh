@@ -11,3 +11,16 @@ echo "ssh-add ~/.ssh/id_ed25519_vmTgithub_mysh"
 echo "ssh-add ~/.ssh/id_ed25519_acerTgithub_mysh"
 echo "cat ~/.ssh/config"
 echo "myboardmnt"
+echo
+cat << EOF
+--- only access from key ---
+[client]
+ssh-copy-id -i id_ed25519_vmTorange.pub winnie@orange
+ssh -i id_ed25519_vmTorange winnie@hilbert.csie.io -p8022
+[server]
+sudo vim /etc/ssh/sshd_config
+ PasswordAuthentication no
+ PubkeyAuthentication yes
+sudo systemctl restart ssh
+sudo /etc/init.d/ssh restart
+EOF

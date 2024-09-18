@@ -3,6 +3,12 @@ Host s149
 	IdentityFile ~/.ssh/id_rsa_vmTs149
 	User winnie
 
+Host orange
+	HostName hilbert.csie.io
+    Port 8022
+	IdentityFile ~/.ssh/id_ed25519_vmTorange
+	User winnie
+
 Host t300
 	HostName 140.96.28.149
 	IdentityFile ~/.ssh/id_rsa_vmTs149
