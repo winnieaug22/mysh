@@ -30,6 +30,11 @@ Host acer
     IdentityFile ~/.ssh/id_ed25519_vmTacer
     User winnie
 
+Host mini
+    HostName 140.96.28.192
+    IdentityFile ~/.ssh/id_ed25519_vmTmini
+    User winnie
+
 Host top
     # HostName 192.168.0.6
     # hwaddress ether 22:22:33:33:22:21
