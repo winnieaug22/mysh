@@ -1,0 +1,3 @@
+#!/bin/bash
+source mycolor
+echo "nmcli device wifi connect HanaLilyHere password 0975303872"
