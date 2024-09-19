@@ -1,0 +1,4 @@
+#!/bin/bash
+cat << EOF
+cp -aLR ~/soft_link_path target_path
+EOF
