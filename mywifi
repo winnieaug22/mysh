@@ -1,4 +1,5 @@
 #!/bin/bash
 source mycolor
 echo "nmcli device wifi connect HanaLilyHere password 0975303872"
+echo "nmcli device wifi connect D000-AX3000 password T300@AX3000"
 echo "nmcli device wifi connect sky password brianlab"
