@@ -5,6 +5,13 @@ echo ""
 echo "psw: iclITRI2022"
 echo Jump host
 echo ssh admin@10.88.212.36 -p 9487
+echo "cat /tmp/home/root/.ssh/mycmd"
+echo "ssh -i /tmp/home/root/.ssh/id_j10Tdsp v100@192.168.10.31"
+echo
+cat << EOF
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCXs4XZtmLES7gf4CDMOgnu7YEjTHKdCECJKB2DwHwnIuHtamqPo3dg49Dv7nZNRN7qFs8LBaglUbpTA0lw3LqWnfr5piOXHuDoQFW+Fecg9cluviq0AmoMW/Uv5qlevFUx8twfn91iynkD9FoXbof4emVDgBdxcnDC1ywLSgkePyrYQysXji7wOJ0vTkeuBil+ERPJ/g2qnTDIl0mqmX5rrqrG5viMNqCARMLPnM7AIFgIBZQu4fTB+RumX+BPw5pqEwz7rc4j23e735+aHqrK/W7OP81UvMHZb9FrDcvg7or3TxMViitNETRUzDo1Fgk/5Vlugp8SIzdmSq78mppR admin@TUF-AX6000-CEB2(B30341 jump10Tdsp)
+EOF
+echo
 echo DSP1\(FT\)
 echo ssh v100@192.168.10.31
 echo DSP2\(UT\)
@@ -13,4 +20,3 @@ echo DSP3\(FT\)
 echo ssh v100@192.168.10.33
 echo DSP4\(UT\)
 echo ssh v100@192.168.10.34
-

@@ -3,6 +3,12 @@ Host s149
 	IdentityFile ~/.ssh/id_rsa_vmTs149
 	User winnie
 
+Host jump10
+	HostName 10.88.212.36
+    Port 9487
+	IdentityFile ~/.ssh/id_ed25519_b30341vmTjump10
+	User admin
+
 Host orange
 	HostName hilbert.csie.io
     Port 8022

@@ -23,4 +23,10 @@ sudo vim /etc/ssh/sshd_config
  PubkeyAuthentication yes
 sudo systemctl restart ssh
 sudo /etc/init.d/ssh restart
+--- copy private key ---
+[ori PC]cat id_ed25519_vmTorange > aaa
+[new PC]chmod 600 aaa
+--- dropbearkey ---
+dropbearkey -f ~/.ssh/id_drop_jump10Tdsp -t rsa -s 2048
+ssh -i /tmp/home/root/.ssh/id_j10Tdsp v100@192.168.10.31
 EOF
