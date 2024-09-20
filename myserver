@@ -4,6 +4,7 @@ echo "psw: brianlab   IPrange:192.168.10.xx"
 echo ""
 echo "psw: iclITRI2022"
 cat <<EOF
+------ winnie@vm[~]ssh jd1  ----
 ssh v100@10.88.212.36 -p 20022    FT-dsp
 ssh v100@10.88.212.36 -p 20031    CPL-dsp1
 ssh v100@10.88.212.36 -p 20032    CPL-dsp2
@@ -11,15 +12,11 @@ ssh v100@10.88.212.36 -p 20033    CPL-dsp3
 ssh v100@10.88.212.36 -p 20034    CPL-dsp4
 ssh v100@10.88.212.36 -p 20051    UT1-dsp Cpldsp1,2 facetoFT; Cpldsp3,4 facetoUT
 EOF
-echo "------ old ------"
-echo Jump host
-echo ssh admin@10.88.212.36 -p 9487
-echo "cat /tmp/home/root/.ssh/mycmd"
+echo "------ winnie@vm[~]ssh jump10 ------"
+echo "------ admin@jumphost[~]cat /tmp/home/root/.ssh/mycmd ---"
+echo "Jump host"
+echo "ssh admin@10.88.212.36 -p 9487"
 echo "ssh -i /tmp/home/root/.ssh/id_j10Tdsp v100@192.168.10.31"
-echo
-cat << EOF
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCXs4XZtmLES7gf4CDMOgnu7YEjTHKdCECJKB2DwHwnIuHtamqPo3dg49Dv7nZNRN7qFs8LBaglUbpTA0lw3LqWnfr5piOXHuDoQFW+Fecg9cluviq0AmoMW/Uv5qlevFUx8twfn91iynkD9FoXbof4emVDgBdxcnDC1ywLSgkePyrYQysXji7wOJ0vTkeuBil+ERPJ/g2qnTDIl0mqmX5rrqrG5viMNqCARMLPnM7AIFgIBZQu4fTB+RumX+BPw5pqEwz7rc4j23e735+aHqrK/W7OP81UvMHZb9FrDcvg7or3TxMViitNETRUzDo1Fgk/5Vlugp8SIzdmSq78mppR admin@TUF-AX6000-CEB2(B30341 jump10Tdsp)
-EOF
 echo
 echo DSP1\(FT\)
 echo ssh v100@192.168.10.31
