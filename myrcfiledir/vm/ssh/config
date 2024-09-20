@@ -3,6 +3,30 @@ Host s149
 	IdentityFile ~/.ssh/id_rsa_vmTs149
 	User winnie
 
+Host jd1
+	HostName 10.88.212.36
+    Port 20031
+	IdentityFile ~/.ssh/id_ed25519_b30341vmTjd
+	User v100
+
+Host jd2
+	HostName 10.88.212.36
+    Port 20032
+	IdentityFile ~/.ssh/id_ed25519_b30341vmTjd
+	User v100
+
+Host jd3
+	HostName 10.88.212.36
+    Port 20033
+	IdentityFile ~/.ssh/id_ed25519_b30341vmTjd
+	User v100
+
+Host jd4
+	HostName 10.88.212.36
+    Port 20034
+	IdentityFile ~/.ssh/id_ed25519_b30341vmTjd
+	User v100
+
 Host jump10
 	HostName 10.88.212.36
     Port 9487

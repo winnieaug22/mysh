@@ -1,4 +1,22 @@
 #!/bin/bash
-echo "/home/winnie/tftp of acerNB"
-echo "get put quit"
-tftp 140.96.28.101 69
+cat << EOF
+sudo apt-get install tftpd-hpa tftp-hpa
+sudo systemctl status tftpd-hpa.service
+sudo systemctl enable tftpd-hpa (start when booting)
+
+--- vim /etc/default/tftpd-hpa ---
+TFTP_USERNAME="tftp"
+TFTP_DIRECTORY="/srv/tftp"
+TFTP_ADDRESS=":69"
+TFTP_OPTIONS="--secure --create"
+
+sudo mkdir -p /srv/tftp
+sudo chown -R nobody:nogroup /srv/tftp
+sudo chmod -R 777 /srv/tftp
+
+sudo systemctl restart tftpd-hpa
+
+tftp 140.96.28.237
+[cmd] get put quit
+
+EOF

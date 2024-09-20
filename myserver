@@ -3,6 +3,15 @@ echo "wifi: sky"
 echo "psw: brianlab   IPrange:192.168.10.xx"
 echo ""
 echo "psw: iclITRI2022"
+cat <<EOF
+ssh v100@10.88.212.36 -p 20022    FT-dsp
+ssh v100@10.88.212.36 -p 20031    CPL-dsp1
+ssh v100@10.88.212.36 -p 20032    CPL-dsp2
+ssh v100@10.88.212.36 -p 20033    CPL-dsp3
+ssh v100@10.88.212.36 -p 20034    CPL-dsp4
+ssh v100@10.88.212.36 -p 20051    UT1-dsp Cpldsp1,2 facetoFT; Cpldsp3,4 facetoUT
+EOF
+echo "------ old ------"
 echo Jump host
 echo ssh admin@10.88.212.36 -p 9487
 echo "cat /tmp/home/root/.ssh/mycmd"
