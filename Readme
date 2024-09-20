@@ -1,3 +1,5 @@
 echo $PATH
----modified ~/bashrc ----
-export PATH="$PATH:$HOME/mysh"
+-------
+myrcfile
+myapp
+myvim
