@@ -1,5 +1,6 @@
 #!/bin/bash
 echo sudo dmesg\|tail \|grep ttyUSB
+echo "ls -l /dev/tty*"
 echo sudo minicom -s
 echo "--[configuration]--"
 echo "--Serial port setup--"
@@ -9,3 +10,5 @@ echo "F- Hardware Flow Control: No"
 echo "--Save setup as dfl--"
 echo sudo minicom -D /dev/ttyUSB1
 echo leave: ctrl+a x
+echo "--Save setup as..--"
+echo "sudo minicom usb2bps115200"
