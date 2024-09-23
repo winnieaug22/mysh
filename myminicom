@@ -13,3 +13,5 @@ echo "vim /etc/minicom/minirc.dfl"
 echo "--Save setup as..--"
 echo "sudo minicom usb2bps115200"
 echo leave: ctrl+a x
+echo "---windows---"
+echo "C:\\Users\\User\\AppData\\Roamingi\\teraterm5\\*.ini"

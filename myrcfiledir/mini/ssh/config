@@ -13,7 +13,7 @@ Host s149
 
 Host vm
     HostName 140.96.28.237
-    IdentityFile ~/.ssh/id_rsa_acerTvm
+    IdentityFile ~/.ssh/id_rsa_miniTvm
     User winnie
 
 Host top
