@@ -9,6 +9,7 @@ echo "E- Bps/Par/Bits: 115200 8N1"
 echo "F- Hardware Flow Control: No"
 echo "--Save setup as dfl--"
 echo sudo minicom -D /dev/ttyUSB1
-echo leave: ctrl+a x
+echo "vim /etc/minicom/minirc.dfl"
 echo "--Save setup as..--"
 echo "sudo minicom usb2bps115200"
+echo leave: ctrl+a x
