@@ -10,6 +10,15 @@ Host s149
     HostName 140.96.28.149
     IdentityFile ~/.ssh/id_rsa_acerTs149
     User winnie
+Host v100j
+    HostName 192.168.10.100
+    IdentityFile ~/.ssh/id_rsa_acerTv100j
+    User v100
+
+Host dsp32
+    HostName 192.168.10.32
+    IdentityFile ~/.ssh/id_ed25519_b30341acerTdsp
+    User v100
 
 Host dsp31
     HostName 192.168.10.31

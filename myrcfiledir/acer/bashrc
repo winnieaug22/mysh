@@ -182,5 +182,5 @@ export PATH=$HOME/.rcfile/.bin/:$PATH
 export PATH=$HOME/android-ndk-r10:$PATH
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519_acerTgithub_mysh
-ssh-add ~/.ssh/id_ed25519_b30341acerTdsp33
+ssh-add ~/.ssh/id_ed25519_b30341acerTdsp
 
