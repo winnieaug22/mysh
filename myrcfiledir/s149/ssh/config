@@ -41,6 +41,18 @@ Host jump10
     # ProxyCommand ssh -i ~/.ssh/id_rsa_s149Tvm winnie@140.96.28.237 nc %h %p
     ProxyJump vm
 
+Host jpi
+    HostName 192.168.10.40
+    Port 22
+    IdentityFile ~/.ssh/id_rsa_v100Tpi
+    User pi
+    ProxyJump jump10
+
+Host jplc
+    HostName 192.168.1.101
+    Port 22
+    User root
+    ProxyJump jpi
 
 Host jd1
     HostName 192.168.10.31
