@@ -1,0 +1,19 @@
+#!/bin/bash
+prompt(){
+    echo "sudo aptitude: sshpass"
+    echo "mylogin jplc"
+}
+if [ "$#" -eq 0 ]; then
+    prompt
+    exit
+fi
+
+case $1 in
+    "jplc")
+        sshpass -p '123456' ssh jplc
+        ;;
+    *)
+        prompt
+        exit
+        ;;
+esac
