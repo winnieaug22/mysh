@@ -11,18 +11,11 @@ Host s149
     IdentityFile ~/.ssh/id_rsa_acerTs149
     User winnie
 
+#----at building 67---
 Host v100j
     HostName 192.168.10.100
     IdentityFile ~/.ssh/id_rsa_acerTv100j
     User v100
-
-Host jj31
-    HostName 192.168.10.31
-    IdentityFile ~/.ssh/id_ed25519_b30341acerTdsp
-    User v100
-    ForwardAgent yes
-    Port 22
-    ProxyCommand ssh v100j nc %h %p
 
 Host dsp31
     HostName 192.168.10.31
@@ -44,6 +37,18 @@ Host dsp34
     IdentityFile ~/.ssh/id_ed25519_b30341acerTdsp
     User v100
 
+Host pi
+    HostName 192.168.10.40
+    IdentityFile ~/.ssh/id_rsa_v100Tpi
+    User pi
+
+Host jplc
+    HostName 192.168.1.101
+    Port 22
+    User root
+    ProxyJump pi
+
+#------------------------
 Host vm
     HostName 140.96.28.237
     IdentityFile ~/.ssh/id_rsa_acerTvm
