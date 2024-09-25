@@ -1,3 +1,83 @@
+Host vm
+    HostName 140.96.28.237
+    IdentityFile ~/.ssh/id_rsa_s149Tvm
+    User winnie
+
+Host d1
+    HostName 10.88.212.36
+    Port 20031
+    IdentityFile ~/.ssh/id_ed25519_b30341vmTjd
+    User v100
+    ProxyJump vm
+
+Host d2
+    HostName 10.88.212.36
+    Port 20032
+    IdentityFile ~/.ssh/id_ed25519_b30341vmTjd
+    User v100
+    ProxyJump vm
+
+Host d3
+    HostName 10.88.212.36
+    Port 20033
+    IdentityFile ~/.ssh/id_ed25519_b30341vmTjd
+    User v100
+    ProxyJump vm
+
+Host d4
+    HostName 10.88.212.36
+    Port 20034
+    IdentityFile ~/.ssh/id_ed25519_b30341vmTjd
+    User v100
+    ProxyJump vm
+
+
+Host jump10
+    HostName 10.88.212.36
+    Port 22
+    IdentityFile ~/.ssh/id_rsa_vmTv100j
+    User v100
+    # ForwardAgent yes
+    # ProxyCommand ssh -i ~/.ssh/id_rsa_s149Tvm winnie@140.96.28.237 nc %h %p
+    ProxyJump vm
+
+
+Host jd1
+    HostName 192.168.10.31
+    Port 22
+    IdentityFile ~/.ssh/id_rsa_v100Tdsp
+    User v100
+    # ForwardAgent yes
+    # ProxyCommand ssh -i ~/.ssh/id_rsa_vmTv100j v100@10.88.212.36 nc %h %p
+    ProxyJump jump10
+
+Host jd2
+    HostName 192.168.10.32
+    Port 22
+    IdentityFile ~/.ssh/id_rsa_v100Tdsp
+    User v100
+    # ForwardAgent yes
+    # ProxyCommand ssh -i ~/.ssh/id_rsa_vmTv100j v100@10.88.212.36 nc %h %p
+    ProxyJump jump10
+
+Host jd3
+    HostName 192.168.10.33
+    Port 22
+    IdentityFile ~/.ssh/id_rsa_v100Tdsp
+    User v100
+    # ForwardAgent yes
+    # ProxyCommand ssh -i ~/.ssh/id_rsa_vmTv100j v100@10.88.212.36 nc %h %p
+    ProxyJump jump10
+
+Host jd4
+    HostName 192.168.10.34
+    Port 22
+    IdentityFile ~/.ssh/id_rsa_v100Tdsp
+    User v100
+    # ForwardAgent yes
+    # ProxyCommand ssh -i ~/.ssh/id_rsa_vmTv100j v100@10.88.212.36 nc %h %p
+    ProxyJump jump10
+
 Host s149
     HostName 140.96.28.149
     IdentityFile ~/.ssh/id_rsa_acerTs149
@@ -11,11 +91,6 @@ Host acer
 Host mini
     HostName 140.96.28.192
     IdentityFile ~/.ssh/id_rsa_s149Tmini
-    User winnie
-
-Host vm
-    HostName 140.96.28.237
-    IdentityFile ~/.ssh/id_rsa_s149Tvm
     User winnie
 
 Host qq

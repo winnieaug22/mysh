@@ -65,6 +65,8 @@ hint(){
             # echo
 			echo -e "$yellow---pure---$end"
             echo git clone --branch develop $remoteUrl
+            echo cp -f ~/data/dtsi/system-user.akio_forR5.dtsi $myProj/leo_settings/replace_files/system-user.space.dtsi
+            echo diff ~/data/dtsi/system-user.akio_forR5.dtsi $myProj/leo_settings/replace_files/system-user.space.dtsi
 			echo leo_settings/setup.as.space.sh
 			echo petalinux-config --get-hw-description itri_system.xsa --silentconfig
 			echo petalinux-config -c kernel
