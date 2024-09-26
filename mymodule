@@ -9,11 +9,21 @@ cat /lib/modules/$(uname -r)/modules.builtin
 
 --- auto insert modules ---
 lsmod
+cat /etc/modules-load.d/modules.conf
+cat /etc/modules
 /lib/modules/5.10.0-xilinx-v2021.2/kernel/drivers/*
 /lib/modules/5.10.0-xilinx-v2021.2/kernel/drivers/net/spacewire.ko
+
+depmod -n
+cat /lib/modules/`uname -r`/modules.dep
 
 --- check *.ko ---
 modinfo -F vermagic spacewire.ko
 uname -a
+
+--- insert/remove modules by manual ---
+modprobe spacewire
+insmod spacewire
+rmmod spacewire
 
 EOF
