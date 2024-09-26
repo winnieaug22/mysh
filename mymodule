@@ -1,3 +1,19 @@
 #!/bin/bash
-echo "cat /lib/modules/$(uname -r)/modules.builtin"
-echo "/boot/config-* or /proc/config.gz"
+cat << EOF
+--- kernel config ---
+/boot/config-* or /proc/config.gz
+zcat /proc/config.gz > mycurrent_config
+
+--- build-in modules ---
+cat /lib/modules/$(uname -r)/modules.builtin
+
+--- auto insert modules ---
+lsmod
+/lib/modules/5.10.0-xilinx-v2021.2/kernel/drivers/*
+/lib/modules/5.10.0-xilinx-v2021.2/kernel/drivers/net/spacewire.ko
+
+--- check *.ko ---
+modinfo -F vermagic spacewire.ko
+uname -a
+
+EOF
