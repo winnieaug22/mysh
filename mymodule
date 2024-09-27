@@ -15,6 +15,7 @@ cat /etc/modules
 /lib/modules/5.10.0-xilinx-v2021.2/kernel/drivers/net/spacewire.ko
 
 depmod -n
+depmod --> mean update
 cat /lib/modules/`uname -r`/modules.dep
 
 --- check *.ko ---

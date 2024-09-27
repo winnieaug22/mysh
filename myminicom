@@ -1,6 +1,15 @@
 #!/bin/bash
-echo sudo dmesg\|tail \|grep ttyUSB
+cat << EOF
+===find ttyUSBx===
 echo "ls -l /dev/tty*"
+echo sudo dmesg\|tail \|grep ttyUSB
+lsusb -t
+lsusb
+  --known: Silicon Labs CP2105 Dual UART Bridge
+ls -l /dev/serial/by-id
+  --known: usb-Silicon_Labs_CP2105_Dual_USB_to_UART_Bridge_Controller_0109170C-if01-port0
+===================
+EOF
 echo sudo minicom -s
 echo "--[configuration]--"
 echo "--Serial port setup--"
@@ -15,3 +24,13 @@ echo "sudo minicom usb2bps115200"
 echo leave: ctrl+a x
 echo "---windows---"
 echo "C:\\Users\\User\\AppData\\Roamingi\\teraterm5\\*.ini"
+cat << EOF
+---------udev---------
+udevadm info -a -n /dev/ttyUSB3|grep KERNEL
+-- sudo vim /etc/udev/rules.d/99-myuart.rules --
+fail: KERNELS=="1-2", KERNEL=="ttyUSB*", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea70", ATTRS{serial}=="0109170C", ATTRS{bInterfaceNumber}=="01", SYMLINK+="ttyUSB_myuart"
+OK: ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea70", ATTRS{serial}=="0109170C", SYMLINK+="ttyUSB_myuart"
+---
+sudo udevadm control --reload-rules; sudo service udev restart; sudo udevadm trigger; ls -l /dev/ttyUSB*;
+------------------------
+EOF
