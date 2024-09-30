@@ -8,7 +8,7 @@
 #endif
 
 #define myddbg_p(fmt, ...) \
-        do { if (MYDDBG_P) fprintf( stderr, "%s:%d:%s(): " fmt, \
+        do { if (MYDDBG_P) fprintf( stderr, "%s:%d:%s(): " fmt "\n", \
                 __FILE__, __LINE__, __func__, ##__VA_ARGS__); } while (0)
 
 #endif /* MYDDBG_H */
