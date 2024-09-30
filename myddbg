@@ -8,6 +8,8 @@ cd ${myddbg_dir}
 EOF
 echo -e "$green--- exe ---$end"
 echo "cat ${myddbg_dir}Makefile"
+echo "make -C ../../realupdate/files/ clean"
+echo "make -C ../../realupdate/files/ CFLAGS+=\" -DMYPC_TEST -DMYDDBG \""
 echo "cat ${myddbg_dir}myddbg.h"
 echo "cat ${myddbg_dir}tt.c"
 echo -e "$green--- static lib in sub-dir ---$end"
