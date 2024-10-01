@@ -122,6 +122,9 @@ main() {
         hint
         exit 1
     fi
+    echo "sudo umount /media/winnie/MYBOOT"
+    echo "sudo umount /media/winnie/myfs"
+
 }
 
 main "$@"
