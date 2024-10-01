@@ -2,17 +2,23 @@
 source mycolor
 
 mygit="/home/winnie/mysh/mygitdir"
-filelist="$mygit/nfilelist"
 filelist_nl="$mygit/nfilelist_nl"
-mygitdiff="$mygit/nmygitdiff"
 mylog="$mygit/nlog"
+filelist="$mygit/tmp/nfilelist"
+mygitdiff="$mygit/tmp/nmygitdiff"
+mygitadd="$mygit/tmp/nmygitadd"
+mygitcp="$mygit/tmp/nmygitcp"
 
 hint(){
     error=$1
     case $error in
         "genvimdiff")
             echo "$0 diff [modified path] [ori path]"
-            echo "$0 diff /home/winnie/myprojects/0615new/leo_zcu111v2021_2all /home/winnie/myprojects/leo_zcu111v2021_2all"
+            echo "$0 diff /new/leo_zcu111v2021_2all/ /ori/leo_zcu111v2021_2all/"
+            ;;
+        "gengitcp")
+            echo "$0 cp [modified path] [ori path]"
+            echo "$0 cp /new/leo_zcu111v2021_2all/ /ori/leo_zcu111v2021_2all/"
             ;;
         *)
             exit
@@ -20,45 +26,95 @@ hint(){
     esac
 
 }
-
+gengitadd(){
+    rm -rf $mygitadd
+    echo "#!/bin/bash">$mygitadd
+    while IFS= read -r file; do
+        echo "git add $file">>$mygitadd
+    done < "$filelist_nl"
+    chmod +x $mygitadd
+    echo "$mygitadd"
+}
+gengitcp(){
+        local newdir=$1
+        local oridir=$2
+        echo "--------------"
+        rm -rf $mygitcp
+        echo "#!/bin/bash">$mygitcp
+        while IFS= read -r line
+        do
+            echo cp -f "${newdir}$line" "${oridir}$line">>$mygitcp
+            echo cp -f "${newdir}$line" "${oridir}$line"
+        done < "$filelist_nl"
+        echo "--------------"
+        echo "$mygitcp"
+        chmod +x $mygitcp
+        exit
+}
+genvimdiff(){
+        local newdir=$1
+        local oridir=$2
+        cat $filelist_nl
+        echo "--------------"
+        rm -rf $mygitdiff
+        echo "#!/bin/bash">$mygitdiff
+        while IFS= read -r line
+        do
+            echo "read -p \"vimdiff ${newdir}$line ${oridir}$line\"">>$mygitdiff
+            echo vimdiff "${newdir}$line" "${oridir}$line">>$mygitdiff
+            echo vimdiff "${newdir}$line" "${oridir}$line"
+        done < "$filelist_nl"
+        echo "--------------"
+        echo "$mygitdiff"
+        chmod +x $mygitdiff
+        exit
+}
 [ -e $filelist ] && rm $filelist
 cat $filelist_nl |sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/ /g' > $filelist
-echo -e "$yellow--vimdiff--$end"
-if [ "$#" -eq 3 ] && [ "$1" = "diff" ]; then
-    cat $filelist_nl
-    echo "--------------"
-    rm -rf $mygitdiff
-    echo "#!/bin/bash">$mygitdiff
-    while IFS= read -r line
-    do
-        echo "read -p \"vimdiff $2/$line $3/$line\"">>$mygitdiff
-        echo vimdiff "$2/$line" "$3/$line">>$mygitdiff
-        echo vimdiff "$2/$line" "$3/$line"
-    done < "$filelist_nl"
-    echo "--------------"
-    echo "$mygitdiff"
-    chmod +x $mygitdiff
-    exit
-else
-    hint "genvimdiff"
-fi
+###### push ###############
 echo -e "$yellow--modified--$end"
 echo $filelist_nl
 echo $mylog
-echo -e "$yellow--git clone develop--$end"
-echo "git clone --branch develop http://140.96.28.94:3000/LEO/leo_zcu111v2021_2all.git"
-echo -e "$red---push---$end"
-echo "git add `cat $filelist`"
-echo ""
+echo -e "$yellow--vimdiff--$end"
+echo "cat $mygitdiff"
+if [ "$#" -eq 3 ] && [ "$1" = "diff" ]; then
+    genvimdiff $2 $3
+else
+    hint "genvimdiff"
+fi
+
+echo -e "$yellow-- cp --$end"
+echo "cat $mygitcp"
+if [ "$#" -eq 3 ] && [ "$1" = "cp" ]; then
+    cat $filelist_nl
+    gengitcp $2 $3
+else
+    hint "gengitcp"
+fi
+
+echo -e "$blue---push---$end"
+gengitadd
+echo cat $mygitadd
+echo
+# echo "git add `cat $filelist`"
 echo "git diff --staged"
 # echo "git commit `cat $filelist` -m \"`cat $mylog`\""
-echo ""
 echo "git commit `cat $filelist`"
 echo ":r !cat $mylog"
 echo
 echo "git lg ; git show"
+echo myrun allo , on board perform
 echo "git push"
-echo "-------"
+###### cherry-pick #############################
+echo -e "$red --git clone develop--$end"
+echo "git clone --branch develop http://140.96.28.94:3000/LEO/leo_zcu111v2021_2all.git"
+echo -e "$red --remote--$end"
+cat << EOF
+git remote -v
+git remote add myLocalOrigin <url>
+git remote show origin
+EOF
+echo -e "$red --local--$end"
 echo "git branch -a"
 echo "git checkout -b [mybranch-local] origin/[mybranch-remote]"
 echo "[in current xxbranch-local]: "
@@ -66,15 +122,16 @@ echo "   git pull origin [mybranch-remote]"
 echo "   L--> mean pull [mybranch-remote] to current xxbranch-local"
 echo "git branch -vv <== local branch mapping remote branch"
 echo "git pull <== default setting: git branch --set-upstream-to=origin/branch-name"
-echo "-------"
+echo -e "$yellow---develop to master---$end"
 echo "git fetch --all"
 echo "git checkout master"
+echo "( git checkout -b develop origin/develop ) "
 echo "git pull origin master"
 echo "git cherry-pick [c5cac38@develop]"
 echo "git cherry-pick c5cac38"
 echo "---> new commit hash @ master"
 echo "git push"
-echo -e "$yellow---master---$end"
+echo -e "$yellow---master to develop---$end"
 echo "git clone http://140.96.28.94:3000/LEO/leo_zcu111v2021_2all.git"
 echo "git chekcout develop"
 echo "git fetch --all"
