@@ -44,7 +44,7 @@ hint(){
             echo "[ gbitn                                                            ] "
             echo "[ clone -> chxsa xsa -> allo                                       ] "
             echo "[ fallo (include allo - qset - qbwic) ]"
-            echo "[ all (include setupTspace - config - build - pack - cp2out - cp2acer ) ] "
+            echo "[ all (include setupTspace - config - build - pack - cp2out - cp2mini ) ] "
             echo "[ allo(include setupTspace - config - build - pack - cp2out)            ] for myrunbatch.sh"
             echo "[ ker (include configkernle-buildkernel-cpimage2out)               ] "
             echo "[ genapp myappname (include buildapp-installapp- cpapp2out myappname )   ] "
@@ -208,6 +208,19 @@ cp2out(){
     ls -l $bhw/
 
 }
+cp2mini(){
+    cd $myProj
+    echo "---ssh mini:$acerOutPath---"
+    # acerOutPath=tftp/out$(date "+%Y%m%d_%H%M%S")
+    acerOutPath=out
+    ssh -t mini "rm -rvf $acerOutPath;exit"
+    scp -r out mini:$acerOutPath
+    ssh -t mini "ls -l $acerOutPath/;exit"
+    echo "scp $homedir/mysh/myacer2sd.sh mini:"
+    echo "ssh mini"
+    echo "myacer2sd out"
+
+}
 cp2acer(){
     cd $myProj
     echo "---ssh acer:$acerOutPath---"
@@ -282,7 +295,8 @@ case $action in
         build
         pack
         cp2out
-        cp2acer
+        # cp2acer
+        cp2mini
         ;;
     "allo")
 		setupTspace
@@ -304,7 +318,8 @@ case $action in
         build
         pack
         cp2out
-        cp2acer
+        # cp2acer
+        cp2mini
         ;;
     "build2out")
         build
@@ -333,6 +348,10 @@ case $action in
     "cp2acer")
         cp2out
         cp2acer
+        ;;
+    "cp2mini")
+        cp2out
+        cp2mini
         ;;
     "qset")
         qset
