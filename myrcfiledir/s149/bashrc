@@ -182,3 +182,4 @@ export LIBGL_ALWAYS_INDIRECT=1
 #export PATH=$HOME/android-ndk-r10:$PATH
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519_s149Tgithub_mysh
+ssh-add ~/.ssh/id_rsa_s149Ttee
