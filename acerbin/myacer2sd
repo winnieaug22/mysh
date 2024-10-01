@@ -24,8 +24,7 @@ hint() {
     echo "  myacer2sd all out hw02"
     echo "  myacer2sd cpblite out hw02"
     echo "------"
-    echo "sudo umount /media/winnie/MYBOOT"
-    echo "sudo umount /media/winnie/myfs"
+    echo "mygparted"
 }
 
 validate_input() {
