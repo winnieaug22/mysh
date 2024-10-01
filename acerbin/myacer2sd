@@ -25,6 +25,8 @@ hint() {
     echo "  myacer2sd cpblite out hw02"
     echo "------"
     echo "mygparted"
+    echo "sudo unmount /media/winnie/*"
+    echo "df -h|grep sdb"
 }
 
 validate_input() {

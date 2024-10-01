@@ -10,7 +10,7 @@ if [ ! -d "$dir" ]; then
 fi
 
 # Loop through each mounted point in the specified directory
-echo "--$dir--"
+echo "-- df $dir/* --"
 for mountPoint in "$dir"/*; do
   # Check if the item is a directory (mounted point)
   if [ -d "$mountPoint" ]; then
