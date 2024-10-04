@@ -182,3 +182,7 @@ export PATH=$HOME/.rcfile/.bin/:$PATH
 export PATH=$HOME/android-ndk-r10:$PATH
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519_miniTgithub
+######
+export ARCH=riscv
+export CROSS_COMPILE=riscv64-linux-
+export PATH=$HOME/Andestech/AndeSight_STD_v530/toolchains/nds64le-linux-glibc-v5d/bin:$PATH
