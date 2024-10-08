@@ -1,8 +1,8 @@
 #!/bin/bash
 cat << EOF
 ===find ttyUSBx===
-echo "ls -l /dev/tty*"
-echo sudo dmesg|tail|grep ttyUSB
+ls -l /dev/tty*
+sudo dmesg|tail|grep ttyUSB
 lsusb -t
 lsusb
   --known: Silicon Labs CP2105 Dual UART Bridge
